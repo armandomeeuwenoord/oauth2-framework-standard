@@ -5,10 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManager as Base;
+use FOS\UserBundle\Util\CanonicalizerInterface;
 use OAuth2\EndUser\EndUserInterface;
 use OAuth2\EndUser\EndUserManagerInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use FOS\UserBundle\Util\CanonicalizerInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class UserManager extends Base implements EndUserManagerInterface
@@ -91,7 +90,7 @@ class UserManager extends Base implements EndUserManagerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getClass()
     {
@@ -99,7 +98,7 @@ class UserManager extends Base implements EndUserManagerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function deleteUser(UserInterface $user)
     {
@@ -108,7 +107,7 @@ class UserManager extends Base implements EndUserManagerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findUserBy(array $criteria)
     {
@@ -116,7 +115,7 @@ class UserManager extends Base implements EndUserManagerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findUsers()
     {
@@ -124,7 +123,7 @@ class UserManager extends Base implements EndUserManagerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function reloadUser(UserInterface $user)
     {
@@ -135,7 +134,7 @@ class UserManager extends Base implements EndUserManagerInterface
      * Updates a user.
      *
      * @param UserInterface $user
-     * @param Boolean       $andFlush Whether to flush the changes (default true)
+     * @param bool          $andFlush Whether to flush the changes (default true)
      */
     public function updateUser(UserInterface $user, $andFlush = true)
     {

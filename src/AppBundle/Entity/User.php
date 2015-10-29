@@ -4,13 +4,12 @@ namespace AppBundle\Entity;
 
 use Base64Url\Base64Url;
 use FOS\UserBundle\Model\User as Base;
-use Doctrine\ORM\Mapping as ORM;
 use OAuth2\EndUser\EndUserInterface;
 
 class User extends Base implements EndUserInterface
 {
     protected $id;
-    
+
     /**
      * @var string
      */
