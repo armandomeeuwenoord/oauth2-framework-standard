@@ -1,0 +1,17 @@
+# JoseBundle Routes
+jwkset_endpoint:
+    resource: "@SpomkyLabsJoseBundle/Resources/config/routing/jwkset_controller.yml"
+    prefix: '/keys'
+
+# OAuth2ServerBundle Routes
+oauth2:
+    resource: '@OAuth2FrameworkServerBundle/Resources/config/routing/routing.yml'
+
+# FOS User Bundle
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# App specific
+app:
+    resource: "@AppBundle/Controller/"
+    type:     'annotation'
