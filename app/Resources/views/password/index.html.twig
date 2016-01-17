@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumbs">
+        <li><a href="{{ path("homepage") }}">Home</a></li>
+        <li><a href="{{ path("manager") }}">Manager</a></li>
+        <li><a href="{{ path("manager_client") }}">Clients</a></li>
+        <li class="current"><a href="{{ path("manager_password_clients") }}">Password Clients</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    {% if clients|length > 0 %}
+        <ul>
+            {% for client in clients %}
+                <li>{{ client.getDisplayName() }} ({{ client.getPublicId() }})</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        No client...
+    {% endif %}
+    <a href="{{ path("manager_password_client_add") }}" class="button">Add</a>
+{% endblock %}

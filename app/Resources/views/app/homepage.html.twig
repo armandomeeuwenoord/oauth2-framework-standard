@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block breadcrumb %}
+    <ul class="breadcrumbs">
+        <li class="current"><a href="{{ path("homepage") }}">Home</a></li>
+    </ul>
+{% endblock %}
+
 {% block body %}
     <h2>Welcome!</h2>
     <p>

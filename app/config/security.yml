@@ -16,7 +16,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         token:
-            pattern: ^/oauth/v2/(token|revoke)
+            pattern: ^/oauth/v2/(token|revoke|introspect)
             security: false
         main:
             pattern: ^/
@@ -31,3 +31,4 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/oauth/v2/authorize, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/manager, role: IS_AUTHENTICATED_REMEMBERED }

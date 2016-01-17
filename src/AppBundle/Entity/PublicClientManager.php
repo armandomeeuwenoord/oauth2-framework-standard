@@ -2,22 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\UserInterface;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\PublicClientPlugin\Model\PublicClientManager as Base;
 
 class PublicClientManager extends Base
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function createClient()
+    public function getClientsOfUser(UserInterface $user)
     {
-        $client = parent::createClient();
-        $client->setAllowedGrantTypes([
-            'token',
-            'authorization_code',
-            'password',
-            'refresh_token',
-        ]);
-        return $client;
+        return $this->getEntityRepository()->findBy(['owner' => $user]);
     }
 }

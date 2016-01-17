@@ -8,6 +8,7 @@ OAuth2 Server Standard Edition
 This project is a Symfony2 application to create OAuth2 Server.
 It is based on the Symfony 2.7 Standard Edition and includes the following bundles:
 
-* Spomky-Labs OAuth2 Server Bundle
-* FOS User Bundle
-* Puli Bundle
+* `Spomky-Labs OAuth2 Server Bundle` for all OAuth2 components
+* `Spomky-Labs Jose Bundle` for JWT support
+* `FOS User Bundle` for user management
+* `Puli Bundle` for resources management

@@ -2,24 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\UserInterface;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\PasswordClientPlugin\Model\PasswordClientManager as BaseManager;
 
 class PasswordClientManager extends BaseManager
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function createClient()
+    public function getClientsOfUser(UserInterface $user)
     {
-        $client = parent::createClient();
-        $client->setAllowedGrantTypes([
-            'token',
-            'code',
-            'authorization_code',
-            'password',
-            'client_credentials',
-            'refresh_token',
-        ]);
-        return $client;
+        return $this->getEntityRepository()->findBy(['owner' => $user]);
     }
 }

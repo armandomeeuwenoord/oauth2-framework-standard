@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumbs">
+        <li><a href="{{ path("homepage") }}">Home</a></li>
+        <li class="current"><a href="{{ path("manager") }}">Manager</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+<p>
+    Go to: <br>
+    <ul>
+        <li><a href="{{ path("manager_client") }}">Clients</a></li>
+    </ul>
+</p>
+{% endblock %}

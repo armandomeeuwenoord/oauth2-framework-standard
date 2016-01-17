@@ -25,14 +25,3 @@ monolog:
             level: debug
         console:
             type:  console
-
-doctrine:
-    dbal:
-        driver:   pdo_sqlite
-        host:     localhost
-        port:
-        path:     "%kernel.root_dir%/project.db"
-        user:     root
-        password:
-        charset:  UTF8
-
