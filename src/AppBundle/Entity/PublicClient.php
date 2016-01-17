@@ -6,6 +6,8 @@ use SpomkyLabs\OAuth2ServerBundle\Plugin\PublicClientPlugin\Model\PublicClient a
 
 class PublicClient extends BasePublicClient
 {
+    use ClientBehaviour;
+
     private $id;
 
     public function getId()

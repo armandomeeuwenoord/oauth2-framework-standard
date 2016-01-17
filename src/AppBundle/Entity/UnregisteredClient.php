@@ -6,4 +6,5 @@ use SpomkyLabs\OAuth2ServerBundle\Plugin\UnregisteredClientPlugin\Model\Unregist
 
 class UnregisteredClient extends BaseUnregisteredClient
 {
+    use ClientBehaviour;
 }

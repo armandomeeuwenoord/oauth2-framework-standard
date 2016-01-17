@@ -131,10 +131,7 @@ class UserManager extends Base implements EndUserManagerInterface
     }
 
     /**
-     * Updates a user.
-     *
-     * @param UserInterface $user
-     * @param bool          $andFlush Whether to flush the changes (default true)
+     * {@inheritdoc}
      */
     public function updateUser(UserInterface $user, $andFlush = true)
     {

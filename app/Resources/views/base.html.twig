@@ -1,16 +1,58 @@
 <!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>{% block title %}OAuth2 Server{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfoundation/css/foundation.min.css') }}" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <!--[if lt IE 9]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
     </head>
     <body>
-    {% block body %}{% endblock %}
-    {% block javascripts %}{% endblock %}
+    {{ knp_menu_render('main') }}
+    <div class="row">
+        <div class="large-3 columns">
+            <h1>
+                <img src="{{ asset('apple-touch-icon.png') }}"/>
+            </h1>
+        </div>
+        <div class="large-9 columns">
+            <h2>Spomky-Labs OAuth2 Server<br><small>Standard Edition</small></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-9 push-3 columns">
+            {% block body %}{% endblock %}
+        </div>
+        <div class="large-3 pull-9 columns">
+            {{ knp_menu_render('user') }}
+        </div>
+    </div>
+    <footer class="row">
+        <div class="large-12 columns">
+            <hr/>
+            <div class="row">
+                <div class="large-6 columns">
+                    <p><a href="https://github.com/Spomky-Labs">© Spomky-Labs.</a> All rights reserved.</p>
+                </div>
+                <div class="large-6 columns">
+                    <ul class="inline-list right">
+                        <li><a href="https://en.wikipedia.org/wiki/OAuth#OAuth_2.0">About OAuth2</a></li>
+                        <li><a href="https://github.com/Spomky-Labs/OAuth2ServerStandardEdition/tree/master/doc">Official documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('bundles/bmatznerjquery/js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/bmatznerfoundation/js/foundation.min.js') }}"></script>
+        <script>
+            $(document).foundation();
+        </script>
+    {% endblock %}
     </body>
 </html>

@@ -6,4 +6,20 @@ use SpomkyLabs\OAuth2ServerBundle\Plugin\PasswordClientPlugin\Model\PasswordClie
 
 class PasswordClientManager extends BaseManager
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function createClient()
+    {
+        $client = parent::createClient();
+        $client->setAllowedGrantTypes([
+            'token',
+            'code',
+            'authorization_code',
+            'password',
+            'client_credentials',
+            'refresh_token',
+        ]);
+        return $client;
+    }
 }

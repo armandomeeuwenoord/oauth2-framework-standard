@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
             "": "src/"
-        }
+        },
+        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -25,13 +26,22 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
 
-        "spomky-labs/oauth2-server-bundle": "dev-master",
-        "spomky-labs/jose-bundle": "dev-master",
-        "puli/symfony-bundle": "~1.0",
-        "friendsofsymfony/user-bundle": "~2.0@dev"
+        "spomky-labs/oauth2-server-bundle": "^3.0.0@dev",
+        "spomky-labs/oauth2-server-library": "^1.0.0@dev",
+        "spomky-labs/jose-bundle": "^1.0.0@dev",
+        "spomky-labs/jose": "^1.0.0@alpha",
+        "puli/composer-plugin": "^1.0-beta9@dev",
+        "puli/symfony-bundle": "^1.0-beta9@dev",
+        "puli/twig-extension": "^1.0-beta7",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "bmatzner/foundation-bundle": "~5.3",
+        "bmatzner/fontawesome-bundle": "~4.4",
+        "bmatzner/jquery-bundle": "*",
+        "knplabs/knp-menu-bundle": "~2.0",
+        "florianbelhomme/flob-foundation-bundle": "~2.1"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3",
+        "sensio/generator-bundle": "^2.7.0|^3.0.0",
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "vipsoft/doctrine-data-fixtures-extension": "*",
         "behat/behat": "^3.0",
@@ -39,7 +49,11 @@
         "behat/mink-browserkit-driver": "^1.2",
         "behat/mink-goutte-driver": "^1.2",
         "behat/mink-selenium2-driver": "*",
-        "puli/cli": "~1.0"
+        "puli/repository": "^1.0-beta9@dev",
+        "puli/discovery": "^1.0-beta9@dev",
+        "puli/url-generator": "^1.0-beta9@dev",
+        "puli/cli": "^1.0-beta10@dev",
+        "puli/manager": "^1.0-beta10@dev"
       },
     "scripts": {
         "post-install-cmd": [

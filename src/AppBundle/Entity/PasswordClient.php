@@ -6,6 +6,8 @@ use SpomkyLabs\OAuth2ServerBundle\Plugin\PasswordClientPlugin\Model\PasswordClie
 
 class PasswordClient extends BasePasswordClient
 {
+    use ClientBehaviour;
+
     private $id;
 
     public function getId()

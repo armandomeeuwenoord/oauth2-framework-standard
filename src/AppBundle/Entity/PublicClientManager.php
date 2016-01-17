@@ -6,4 +6,18 @@ use SpomkyLabs\OAuth2ServerBundle\Plugin\PublicClientPlugin\Model\PublicClientMa
 
 class PublicClientManager extends Base
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function createClient()
+    {
+        $client = parent::createClient();
+        $client->setAllowedGrantTypes([
+            'token',
+            'authorization_code',
+            'password',
+            'refresh_token',
+        ]);
+        return $client;
+    }
 }

@@ -1,0 +1,18 @@
+<p>
+    L'application {{ authorization.getClient().getDisplayName() }} veut accéder à vos données !!!!<br>
+    {{ 'authorization.form.message'|trans({'%client_id%': authorization.getClient().getPublicId()}, 'SpomkyLabsOAuth2Server') }}<br />
+{% if authorization.getScopes()|length > 0 %}
+    {{ 'authorization.form.scope'|trans({}, 'SpomkyLabsOAuth2Server') }}
+    <ul>
+        {% for scope in authorization.getScopes() %}
+            <li>{{ scope }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    {{ 'authorization.form.no_scope'|trans({}, 'SpomkyLabsOAuth2Server') }}
+{% endif %}
+</p>
+{{ form_start(form, {'action':app.request.uri }) }}
+    {{ form_row(form.accept) }}
+    {{ form_row(form.reject) }}
+{{ form_end(form) }}

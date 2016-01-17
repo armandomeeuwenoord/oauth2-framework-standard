@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="app.menu_builder" class="AppBundle\Menu\MenuBuilder">
+            <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="request_stack" />
+        </service>
+
+        <service id="app.menu.main" class="Knp\Menu\MenuItem" factory-method="createMainMenu" factory-service="app.menu_builder">
+            <tag name="knp_menu.menu" alias="main" />
+        </service>
+
+        <service id="app.menu.user" class="Knp\Menu\MenuItem" factory-method="createUserMenu" factory-service="app.menu_builder">
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="security.authorization_checker" />
+            <argument type="service" id="translator" />
+            <tag name="knp_menu.menu" alias="user" />
+        </service>
+    </services>
+</container>

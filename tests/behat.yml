@@ -1,0 +1,22 @@
+default:
+    suites:
+        sofia:
+            type: symfony_bundle
+            bundle: AppBundle
+            mink_session: symfony2
+            contexts:
+                - AppBundle\Context\FeatureContext
+    extensions:
+        Behat\Symfony2Extension: ~
+        VIPSoft\DoctrineDataFixturesExtension\Extension:
+            lifetime:    scenario
+            autoload:    true
+        Behat\MinkExtension:
+            base_url:  http://www.myproject.dev
+            sessions:
+                symfony2:
+                    symfony2: ~
+                goutte:
+                    goutte: ~
+                selenium2:
+                    selenium2: ~

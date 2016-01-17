@@ -18,3 +18,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    cookie_name:       PHPSESSID
+
+    server_name:       "My OAuth2 Server"

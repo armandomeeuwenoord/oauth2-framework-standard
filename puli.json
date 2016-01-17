@@ -1,6 +1,10 @@
 {
     "version": "1.0",
     "name": "spomky-labs/oauth2-server-standard-edition",
+    "path-mappings": {
+        "/spomky-labs/oauth2-server/authorization/template": "app/Resources/views"
+    },
+    "override": "spomky-labs/oauth2-server-bundle",
     "config": {
         "bootstrap-file": "vendor/autoload.php"
     },
@@ -50,6 +54,18 @@
             "installer": "composer",
             "env": "dev"
         },
+        "bmatzner/fontawesome-bundle": {
+            "install-path": "vendor/bmatzner/fontawesome-bundle/Bmatzner/FontAwesomeBundle",
+            "installer": "composer"
+        },
+        "bmatzner/foundation-bundle": {
+            "install-path": "vendor/bmatzner/foundation-bundle/Bmatzner/FoundationBundle",
+            "installer": "composer"
+        },
+        "bmatzner/jquery-bundle": {
+            "install-path": "vendor/bmatzner/jquery-bundle/Bmatzner/JQueryBundle",
+            "installer": "composer"
+        },
         "doctrine/annotations": {
             "install-path": "vendor/doctrine/annotations",
             "installer": "composer"
@@ -80,7 +96,7 @@
             "installer": "composer"
         },
         "doctrine/doctrine-cache-bundle": {
-            "install-path": "vendor/doctrine/doctrine-cache-bundle/Doctrine/Bundle/DoctrineCacheBundle",
+            "install-path": "vendor/doctrine/doctrine-cache-bundle",
             "installer": "composer"
         },
         "doctrine/doctrine-fixtures-bundle": {
@@ -111,6 +127,10 @@
         },
         "fgrosse/phpasn1": {
             "install-path": "vendor/fgrosse/phpasn1",
+            "installer": "composer"
+        },
+        "florianbelhomme/flob-foundation-bundle": {
+            "install-path": "vendor/florianbelhomme/flob-foundation-bundle",
             "installer": "composer"
         },
         "friendsofsymfony/user-bundle": {
@@ -145,13 +165,26 @@
             "install-path": "vendor/jdorn/sql-formatter",
             "installer": "composer"
         },
+        "justinrainbow/json-schema": {
+            "install-path": "vendor/justinrainbow/json-schema",
+            "installer": "composer"
+        },
+        "knplabs/knp-menu": {
+            "install-path": "vendor/knplabs/knp-menu",
+            "installer": "composer"
+        },
+        "knplabs/knp-menu-bundle": {
+            "install-path": "vendor/knplabs/knp-menu-bundle",
+            "installer": "composer"
+        },
         "kriswallsmith/assetic": {
             "install-path": "vendor/kriswallsmith/assetic",
             "installer": "composer"
         },
         "matthiasnoback/symfony-bundle-plugins": {
             "install-path": "vendor/matthiasnoback/symfony-bundle-plugins",
-            "installer": "composer"
+            "installer": "composer",
+            "env": "dev"
         },
         "mdanter/ecc": {
             "install-path": "vendor/mdanter/ecc",
@@ -159,6 +192,20 @@
         },
         "monolog/monolog": {
             "install-path": "vendor/monolog/monolog",
+            "installer": "composer"
+        },
+        "padraic/humbug_get_contents": {
+            "install-path": "vendor/padraic/humbug_get_contents",
+            "installer": "composer",
+            "env": "dev"
+        },
+        "padraic/phar-updater": {
+            "install-path": "vendor/padraic/phar-updater",
+            "installer": "composer",
+            "env": "dev"
+        },
+        "paragonie/random_compat": {
+            "install-path": "vendor/paragonie/random_compat",
             "installer": "composer"
         },
         "phpseclib/phpseclib": {
@@ -173,6 +220,11 @@
             "install-path": "vendor/psr/log",
             "installer": "composer"
         },
+        "puli/cli": {
+            "install-path": "vendor/puli/cli",
+            "installer": "composer",
+            "env": "dev"
+        },
         "puli/composer-plugin": {
             "install-path": "vendor/puli/composer-plugin",
             "installer": "composer"
@@ -180,6 +232,11 @@
         "puli/discovery": {
             "install-path": "vendor/puli/discovery",
             "installer": "composer"
+        },
+        "puli/manager": {
+            "install-path": "vendor/puli/manager",
+            "installer": "composer",
+            "env": "dev"
         },
         "puli/repository": {
             "install-path": "vendor/puli/repository",
@@ -193,12 +250,20 @@
             "install-path": "vendor/puli/symfony-bundle",
             "installer": "composer"
         },
+        "puli/twig-extension": {
+            "install-path": "vendor/puli/twig-extension",
+            "installer": "composer"
+        },
         "puli/url-generator": {
             "install-path": "vendor/puli/url-generator",
             "installer": "composer"
         },
         "ramsey/uuid": {
             "install-path": "vendor/ramsey/uuid",
+            "installer": "composer"
+        },
+        "seld/jsonlint": {
+            "install-path": "vendor/seld/jsonlint",
             "installer": "composer"
         },
         "sensio/distribution-bundle": {
@@ -210,7 +275,7 @@
             "installer": "composer"
         },
         "sensio/generator-bundle": {
-            "install-path": "vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle",
+            "install-path": "vendor/sensio/generator-bundle",
             "installer": "composer",
             "env": "dev"
         },
@@ -236,10 +301,6 @@
         },
         "spomky-labs/jose-bundle": {
             "install-path": "vendor/spomky-labs/jose-bundle",
-            "installer": "composer"
-        },
-        "spomky-labs/jose-interface": {
-            "install-path": "vendor/spomky-labs/jose-interface",
             "installer": "composer"
         },
         "spomky-labs/oauth2-server-bundle": {
@@ -291,6 +352,11 @@
             "install-path": "vendor/webmozart/assert",
             "installer": "composer"
         },
+        "webmozart/console": {
+            "install-path": "vendor/webmozart/console",
+            "installer": "composer",
+            "env": "dev"
+        },
         "webmozart/expression": {
             "install-path": "vendor/webmozart/expression",
             "installer": "composer"
@@ -299,8 +365,8 @@
             "install-path": "vendor/webmozart/glob",
             "installer": "composer"
         },
-        "webmozart/key-value-store": {
-            "install-path": "vendor/webmozart/key-value-store",
+        "webmozart/json": {
+            "install-path": "vendor/webmozart/json",
             "installer": "composer"
         },
         "webmozart/path-util": {

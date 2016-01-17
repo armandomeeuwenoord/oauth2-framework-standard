@@ -5,13 +5,14 @@ use SpomkyLabs\OAuth2ServerBundle\Plugin\AuthorizationEndpointPlugin\Authorizati
 use SpomkyLabs\OAuth2ServerBundle\Plugin\BearerAccessTokenPlugin\BearerAccessTokenPlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\ClientCredentialsGrantTypePlugin\ClientCredentialsGrantTypePlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\ImplicitGrantTypePlugin\ImplicitGrantTypePlugin;
-//use SpomkyLabs\OAuth2ServerBundle\Plugin\JWTBearerPlugin\JWTBearerPlugin;
+use SpomkyLabs\OAuth2ServerBundle\Plugin\MacAccessTokenPlugin\MacAccessTokenPlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\PasswordClientPlugin\PasswordClientPlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\PublicClientPlugin\PublicClientPlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\RefreshTokenGrantTypePlugin\RefreshTokenGrantTypePlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\ResourceOwnerPasswordCredentialsGrantTypePlugin\ResourceOwnerPasswordCredentialsGrantTypePlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\SimpleStringAccessTokenPlugin\SimpleStringAccessTokenPlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\TokenEndpointPlugin\TokenEndpointPlugin;
+use\SpomkyLabs\OAuth2ServerBundle\Plugin\TokenIntrospectionEndpointPlugin\TokenIntrospectionEndpointPlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\TokenRevocationEndpointPlugin\TokenRevocationEndpointPlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\UnregisteredClientPlugin\UnregisteredClientPlugin;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -32,15 +33,21 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
 
+            new Bmatzner\FoundationBundle\BmatznerFoundationBundle(),
+            new Bmatzner\JQueryBundle\BmatznerJQueryBundle(),
+            new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
+
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Flob\Bundle\FoundationBundle\FlobFoundationBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Puli\SymfonyBundle\PuliBundle(),
-            //new SpomkyLabs\JoseBundle\SpomkyLabsJoseBundle(),
+            new SpomkyLabs\JoseBundle\SpomkyLabsJoseBundle(),
             new SpomkyLabs\OAuth2ServerBundle\SpomkyLabsOAuth2ServerBundle([
                 new BearerAccessTokenPlugin(),
+                new MacAccessTokenPlugin(),
                 new UnregisteredClientPlugin(),
                 new PublicClientPlugin(),
                 new PasswordClientPlugin(),
-                //new JWTBearerPlugin(),
                 new SimpleStringAccessTokenPlugin(),
                 new AuthCodeGrantTypePlugin(),
                 new RefreshTokenGrantTypePlugin(),
@@ -50,6 +57,7 @@ class AppKernel extends Kernel
                 new AuthorizationEndpointPlugin(),
                 new TokenEndpointPlugin(),
                 new TokenRevocationEndpointPlugin(),
+                new TokenIntrospectionEndpointPlugin(),
             ]),
         ];
 
