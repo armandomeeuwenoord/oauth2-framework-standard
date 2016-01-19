@@ -10,7 +10,9 @@ use SpomkyLabs\OAuth2ServerBundle\Plugin\PasswordClientPlugin\PasswordClientPlug
 use SpomkyLabs\OAuth2ServerBundle\Plugin\PublicClientPlugin\PublicClientPlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\RefreshTokenGrantTypePlugin\RefreshTokenGrantTypePlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\ResourceOwnerPasswordCredentialsGrantTypePlugin\ResourceOwnerPasswordCredentialsGrantTypePlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\SimpleStringAccessTokenPlugin\SimpleStringAccessTokenPlugin;
+use SpomkyLabs\OAuth2ServerBundle\Plugin\JWTAccessTokenPlugin\JWTAccessTokenPlugin;
+use SpomkyLabs\OAuth2ServerBundle\Plugin\JWTBearerPlugin\JWTBearerPlugin;
+use SpomkyLabs\OAuth2ServerBundle\Plugin\JWTClientPlugin\JWTClientPlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\TokenEndpointPlugin\TokenEndpointPlugin;
 use\SpomkyLabs\OAuth2ServerBundle\Plugin\TokenIntrospectionEndpointPlugin\TokenIntrospectionEndpointPlugin;
 use SpomkyLabs\OAuth2ServerBundle\Plugin\TokenRevocationEndpointPlugin\TokenRevocationEndpointPlugin;
@@ -28,7 +30,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
@@ -48,7 +49,9 @@ class AppKernel extends Kernel
                 new UnregisteredClientPlugin(),
                 new PublicClientPlugin(),
                 new PasswordClientPlugin(),
-                new SimpleStringAccessTokenPlugin(),
+                new JWTAccessTokenPlugin(),
+                new JWTClientPlugin(),
+                new JWTBearerPlugin(),
                 new AuthCodeGrantTypePlugin(),
                 new RefreshTokenGrantTypePlugin(),
                 new ImplicitGrantTypePlugin(),
@@ -61,7 +64,7 @@ class AppKernel extends Kernel
             ]),
         ];
 
-        if (in_array($this->getEnvironment(), ['dev', 'test'])) {
+        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

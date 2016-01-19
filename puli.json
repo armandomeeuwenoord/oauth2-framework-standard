@@ -24,23 +24,8 @@
             "installer": "composer",
             "env": "dev"
         },
-        "behat/mink-browserkit-driver": {
-            "install-path": "vendor/behat/mink-browserkit-driver",
-            "installer": "composer",
-            "env": "dev"
-        },
         "behat/mink-extension": {
             "install-path": "vendor/behat/mink-extension",
-            "installer": "composer",
-            "env": "dev"
-        },
-        "behat/mink-goutte-driver": {
-            "install-path": "vendor/behat/mink-goutte-driver",
-            "installer": "composer",
-            "env": "dev"
-        },
-        "behat/mink-selenium2-driver": {
-            "install-path": "vendor/behat/mink-selenium2-driver",
             "installer": "composer",
             "env": "dev"
         },
@@ -120,11 +105,6 @@
             "install-path": "vendor/doctrine/orm",
             "installer": "composer"
         },
-        "fabpot/goutte": {
-            "install-path": "vendor/fabpot/goutte",
-            "installer": "composer",
-            "env": "dev"
-        },
         "fgrosse/phpasn1": {
             "install-path": "vendor/fgrosse/phpasn1",
             "installer": "composer"
@@ -137,29 +117,13 @@
             "install-path": "vendor/friendsofsymfony/user-bundle",
             "installer": "composer"
         },
-        "guzzlehttp/guzzle": {
-            "install-path": "vendor/guzzlehttp/guzzle",
-            "installer": "composer",
-            "env": "dev"
-        },
-        "guzzlehttp/promises": {
-            "install-path": "vendor/guzzlehttp/promises",
-            "installer": "composer",
-            "env": "dev"
-        },
-        "guzzlehttp/psr7": {
-            "install-path": "vendor/guzzlehttp/psr7",
-            "installer": "composer",
-            "env": "dev"
-        },
         "incenteev/composer-parameter-handler": {
             "install-path": "vendor/incenteev/composer-parameter-handler",
             "installer": "composer"
         },
-        "instaclick/php-webdriver": {
-            "install-path": "vendor/instaclick/php-webdriver",
-            "installer": "composer",
-            "env": "dev"
+        "ircmaxell/password-compat": {
+            "install-path": "vendor/ircmaxell/password-compat",
+            "installer": "composer"
         },
         "jdorn/sql-formatter": {
             "install-path": "vendor/jdorn/sql-formatter",
@@ -176,15 +140,6 @@
         "knplabs/knp-menu-bundle": {
             "install-path": "vendor/knplabs/knp-menu-bundle",
             "installer": "composer"
-        },
-        "kriswallsmith/assetic": {
-            "install-path": "vendor/kriswallsmith/assetic",
-            "installer": "composer"
-        },
-        "matthiasnoback/symfony-bundle-plugins": {
-            "install-path": "vendor/matthiasnoback/symfony-bundle-plugins",
-            "installer": "composer",
-            "env": "dev"
         },
         "mdanter/ecc": {
             "install-path": "vendor/mdanter/ecc",
@@ -267,7 +222,7 @@
             "installer": "composer"
         },
         "sensio/distribution-bundle": {
-            "install-path": "vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle",
+            "install-path": "vendor/sensio/distribution-bundle",
             "installer": "composer"
         },
         "sensio/framework-extra-bundle": {
@@ -319,16 +274,49 @@
             "install-path": "vendor/swiftmailer/swiftmailer",
             "installer": "composer"
         },
-        "symfony/assetic-bundle": {
-            "install-path": "vendor/symfony/assetic-bundle",
-            "installer": "composer"
-        },
         "symfony/monolog-bundle": {
             "install-path": "vendor/symfony/monolog-bundle",
             "installer": "composer"
         },
+        "symfony/phpunit-bridge": {
+            "install-path": "vendor/symfony/phpunit-bridge",
+            "installer": "composer",
+            "env": "dev"
+        },
+        "symfony/polyfill-intl-icu": {
+            "install-path": "vendor/symfony/polyfill-intl-icu",
+            "installer": "composer"
+        },
+        "symfony/polyfill-mbstring": {
+            "install-path": "vendor/symfony/polyfill-mbstring",
+            "installer": "composer"
+        },
+        "symfony/polyfill-php54": {
+            "install-path": "vendor/symfony/polyfill-php54",
+            "installer": "composer"
+        },
+        "symfony/polyfill-php55": {
+            "install-path": "vendor/symfony/polyfill-php55",
+            "installer": "composer"
+        },
+        "symfony/polyfill-php56": {
+            "install-path": "vendor/symfony/polyfill-php56",
+            "installer": "composer"
+        },
+        "symfony/polyfill-php70": {
+            "install-path": "vendor/symfony/polyfill-php70",
+            "installer": "composer"
+        },
+        "symfony/polyfill-util": {
+            "install-path": "vendor/symfony/polyfill-util",
+            "installer": "composer"
+        },
         "symfony/psr-http-message-bridge": {
             "install-path": "vendor/symfony/psr-http-message-bridge",
+            "installer": "composer"
+        },
+        "symfony/security-acl": {
+            "install-path": "vendor/symfony/security-acl",
             "installer": "composer"
         },
         "symfony/swiftmailer-bundle": {
