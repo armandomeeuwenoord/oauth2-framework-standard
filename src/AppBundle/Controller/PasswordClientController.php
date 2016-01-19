@@ -41,7 +41,7 @@ class PasswordClientController extends Controller
 
         if (false === $handler->handle($form, $request)) {
             return $this->render('password/add.html.twig', [
-                'form' => $form->createView(),
+                'form'   => $form->createView(),
                 'client' => $client,
             ]);
         } else {
