@@ -1,13 +1,14 @@
 <?php
+
 namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
@@ -41,8 +42,8 @@ class MenuBuilder
         $menu = $this->factory->createItem(
             'My OAuth2 Server',
             [
-                'route' => 'homepage',
-                'extras' => ['menu_type' => 'topbar']
+                'route'  => 'homepage',
+                'extras' => ['menu_type' => 'topbar'],
             ]
         );
 
@@ -63,7 +64,7 @@ class MenuBuilder
         $menu = $this->factory->createItem('root', [
             'childrenAttributes' => [
                 'class' => 'side-nav',
-        ]]);
+        ], ]);
 
         $request = $this->request_stack->getCurrentRequest();
         if ($request instanceof Request) {
@@ -91,14 +92,14 @@ class MenuBuilder
                     $translator->trans('layout.logout', [], 'FOSUserBundle'),
                     ['route' => 'fos_user_security_logout']
                 )->setExtras([
-                    "icon"          => "fa fa-times",
+                    'icon'          => 'fa fa-times',
                     'icon_position' => 'before',
                 ]);
                 $menu->addChild(
                     $translator->trans('layout.client.password.create', [], 'FOSUserBundle'),
                     ['route' => 'manager_password_client_add']
                 )->setExtras([
-                    "icon"          => "fa fa-times",
+                    'icon'          => 'fa fa-times',
                     'icon_position' => 'before',
                 ]);
             }
