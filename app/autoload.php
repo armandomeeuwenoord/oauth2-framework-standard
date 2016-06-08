@@ -1,10 +1,10 @@
 <?php
 
-use Composer\Autoload\ClassLoader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Composer\Autoload\ClassLoader;
 
 /**
- * @var ClassLoader
+ * @var ClassLoader $loader
  */
 $loader = require __DIR__.'/../vendor/autoload.php';
 

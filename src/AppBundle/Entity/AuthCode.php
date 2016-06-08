@@ -6,7 +6,7 @@ use SpomkyLabs\OAuth2ServerBundle\Plugin\AuthCodeGrantTypePlugin\Model\AuthCode 
 
 class AuthCode extends Base
 {
-    protected $id;
+    private $id;
 
     public function getId()
     {

@@ -11,9 +11,9 @@
 
 namespace AppBundle\Entity;
 
-use SpomkyLabs\OAuth2ServerBundle\Plugin\JWTClientPlugin\Model\JWTClient as BaseJWTClient;
+use SpomkyLabs\OAuth2ServerBundle\Plugin\ClientManagerPlugin\Model\Client as BaseClient;
 
-class JWTClient extends BaseJWTClient
+class Client extends BaseClient
 {
     private $id;
 

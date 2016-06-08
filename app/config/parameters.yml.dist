@@ -21,4 +21,4 @@ parameters:
 
     cookie_name:       PHPSESSID
 
-    server_name:       "My OAuth2 Server"
+    oauth2_issuer:       "https://my.authorization.server/"

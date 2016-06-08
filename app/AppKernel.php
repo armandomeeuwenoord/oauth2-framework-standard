@@ -1,24 +1,7 @@
 <?php
 
-use SpomkyLabs\OAuth2ServerBundle\Plugin\AuthCodeGrantTypePlugin\AuthCodeGrantTypePlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\AuthorizationEndpointPlugin\AuthorizationEndpointPlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\BearerAccessTokenPlugin\BearerAccessTokenPlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\ClientCredentialsGrantTypePlugin\ClientCredentialsGrantTypePlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\ImplicitGrantTypePlugin\ImplicitGrantTypePlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\MacAccessTokenPlugin\MacAccessTokenPlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\PasswordClientPlugin\PasswordClientPlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\PublicClientPlugin\PublicClientPlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\RefreshTokenGrantTypePlugin\RefreshTokenGrantTypePlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\ResourceOwnerPasswordCredentialsGrantTypePlugin\ResourceOwnerPasswordCredentialsGrantTypePlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\JWTAccessTokenPlugin\JWTAccessTokenPlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\JWTBearerPlugin\JWTBearerPlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\JWTClientPlugin\JWTClientPlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\TokenEndpointPlugin\TokenEndpointPlugin;
-use\SpomkyLabs\OAuth2ServerBundle\Plugin\TokenIntrospectionEndpointPlugin\TokenIntrospectionEndpointPlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\TokenRevocationEndpointPlugin\TokenRevocationEndpointPlugin;
-use SpomkyLabs\OAuth2ServerBundle\Plugin\UnregisteredClientPlugin\UnregisteredClientPlugin;
-use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
@@ -41,30 +24,28 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Flob\Bundle\FoundationBundle\FlobFoundationBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Puli\SymfonyBundle\PuliBundle(),
             new SpomkyLabs\JoseBundle\SpomkyLabsJoseBundle(),
-            new SpomkyLabs\OAuth2ServerBundle\SpomkyLabsOAuth2ServerBundle([
-                new BearerAccessTokenPlugin(),
-                new MacAccessTokenPlugin(),
-                new UnregisteredClientPlugin(),
-                new PublicClientPlugin(),
-                new PasswordClientPlugin(),
-                new JWTAccessTokenPlugin(),
-                new JWTClientPlugin(),
-                new JWTBearerPlugin(),
-                new AuthCodeGrantTypePlugin(),
-                new RefreshTokenGrantTypePlugin(),
-                new ImplicitGrantTypePlugin(),
-                new ResourceOwnerPasswordCredentialsGrantTypePlugin(),
-                new ClientCredentialsGrantTypePlugin(),
-                new AuthorizationEndpointPlugin(),
-                new TokenEndpointPlugin(),
-                new TokenRevocationEndpointPlugin(),
-                new TokenIntrospectionEndpointPlugin(),
+            new \SpomkyLabs\OAuth2ServerBundle\SpomkyLabsOAuth2ServerBundle([
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\JWTBearerPlugin\JWTBearerPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\JWTAccessTokenPlugin\JWTAccessTokenPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\BearerTokenPlugin\BearerTokenPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\MacTokenPlugin\MacTokenPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\AuthCodeGrantTypePlugin\AuthCodeGrantTypePlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\RefreshTokenGrantTypePlugin\RefreshTokenGrantTypePlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\ImplicitGrantTypePlugin\ImplicitGrantTypePlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\ResourceOwnerPasswordCredentialsGrantTypePlugin\ResourceOwnerPasswordCredentialsGrantTypePlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\ClientCredentialsGrantTypePlugin\ClientCredentialsGrantTypePlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\AuthorizationEndpointPlugin\AuthorizationEndpointPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\TokenEndpointPlugin\TokenEndpointPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\TokenRevocationEndpointPlugin\TokenRevocationEndpointPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\TokenIntrospectionEndpointPlugin\TokenIntrospectionEndpointPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\OpenIdConnectPlugin\OpenIdConnectPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\SecurityPlugin\SecurityPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\CleanerPlugin\CleanerPlugin(),
             ]),
         ];
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
+        if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
@@ -72,6 +53,21 @@ class AppKernel extends Kernel
         }
 
         return $bundles;
+    }
+
+    public function getRootDir()
+    {
+        return __DIR__;
+    }
+
+    public function getCacheDir()
+    {
+        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+    }
+
+    public function getLogDir()
+    {
+        return dirname(__DIR__).'/var/logs';
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

@@ -21,26 +21,29 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        name: %cookie_name%
-        # handler_id set to null will use default session handler from php.ini
-        handler_id:  ~
+        name: "%cookie_name%"
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
     fragments:       ~
     http_method_override: true
+    assets: ~
 
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_theme:
+        - "FlobFoundationBundle:Form:foundation_form_div_layout.html.twig"
 
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   "%database_driver%"
+        driver:   pdo_mysql
         host:     "%database_host%"
         port:     "%database_port%"
         dbname:   "%database_name%"
@@ -71,96 +74,205 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: AppBundle\Entity\User
+    user_class: 'AppBundle\Entity\User'
     service:
-        user_manager: app_bundle.user_manager
-
-# OAuth2 Server Bundle
-oauth2_server:
-    scope:
-        available_scope: 'scope1 scope2 scope3 scope4'
-    unregistered_client:
-        prefix: "U"
-        client_class: AppBundle\Entity\UnregisteredClient
-        client_manager_class: AppBundle\Entity\UnregisteredClientManager
-    public_client:
-        prefix: "p"
-        client_class: AppBundle\Entity\PublicClient
-        client_manager_class: AppBundle\Entity\PublicClientManager
-    password_client:
-        prefix: "P"
-        client_class: AppBundle\Entity\PasswordClient
-        client_manager_class: AppBundle\Entity\PasswordClientManager
-        digest_authentication_key: abcdefghijklmnop
-    refresh_token:
-        token_class: AppBundle\Entity\RefreshToken
-        token_manager: app_bundle.refresh_token_manager
-    auth_code:
-        class: AppBundle\Entity\AuthCode
-        manager: app_bundle.auth_code_manager
-    token_endpoint:
-        access_token_manager: oauth2_server.jwt_access_token.manager
-        refresh_token_manager: app_bundle.refresh_token_manager
-        end_user_manager: app_bundle.user_manager
-    authorization_endpoint:
-        option:
-            enforce_redirect_uri: false
-            enforce_secured_redirect_uri: false
-            enforce_registered_client_redirect_uris: false
-            enforce_state: false
-    jwt_access_token:
-        issuer: My Authorization Server
-        encrypt_tokens: true
-        expose_public_keys: false
-        signature_algorithm: HS512
-        key_encryption_algorithm: A256KW
-        content_encryption_algorithm: A256CBC-HS512
-        signature_key:
-            kid: SIGNATURE_KEY
-            kty: oct
-            use: sig
-            k: AyM1SysPpbyDfgZld3umj1qzKObwVMkoqQ-EstJQLr_T-1qS0gZH75aKtMN3Yj0iPS4hcgUuTwjAzZr1Z9CAow
-        encryption_key:
-            kid: ENCRYPTION_KEY
-            kty: oct
-            use: enc
-            k: ABEiM0RVZneImaq7zN3u_wABAgMEBQYHCAkKCwwNDg8
-    jwt_bearer:
-        allowed_encryption_algorithms: ['A256KW', 'A256CBC-HS512']
-        allow_none_algorithm: false
-        encryption_required: true
-        expose_public_keys: true
-        encryption_keys:
-            ENCRYPTION_KEY:
-                kid: ENCRYPTION_KEY
-                kty: oct
-                use: enc
-                k: ABEiM0RVZneImaq7zN3u_wABAgMEBQYHCAkKCwwNDg8
-    jwt_client:
-        prefix: "J"
-        client_class: AppBundle\Entity\JWTClient
-        allowed_encryption_algorithms: ['A256KW', 'A256CBC-HS512']
-        allow_none_algorithm: false
-        encryption_required: true
-        expose_public_keys: true
-        encryption_keys:
-            ENCRYPTION_KEY:
-                kid: ENCRYPTION_KEY
-                kty: oct
-                use: enc
-                k: ABEiM0RVZneImaq7zN3u_wABAgMEBQYHCAkKCwwNDg8
+        user_manager: 'app.user_manager'
 
 flob_foundation:
     theme:
-        form: true
+#        form: true
         knp_menu: true
         knp_paginator: false
         pagerfanta: false
 
-
 jose:
-    server_name: My Authorization Server
-    storage:
-        enabled: true
-        class: AppBundle\Entity\Jot
-    compression_methods:  ["DEF", "GZ", "ZLIB"]
+    keys:
+        access_token_signature_key:
+            values:
+                values:
+                    kty: "oct"
+                    kid: "ATSK0"
+                    use: "sig"
+                    alg: "HS512"
+                    k: "AyM1SysPpbyDfgZld3umj1qzKObwVMkoqQ-EstJQLr_T-1qS0gZH75aKtMN3Yj0iPS4hcgUuTwjAzZr1Z9CAow"
+        access_token_key_encryption_key:
+            values:
+                values:
+                    kty: "oct"
+                    kid: "ATKEK0"
+                    use: "enc"
+                    alg: "A256KW"
+                    k: "ABEiM0RVZneImaq7zN3u_wABAgMEBQYHCAkKCwwNDg8"
+        id_token_private_signature_key:
+            file:
+                path: "%kernel.root_dir%/keys/RSA/private.key"
+                password: "test"
+        id_token_public_signature_key:
+            file:
+                path: "%kernel.root_dir%/keys/RSA/public.key"
+                additional_values:
+                    kid: "2016-06-07"
+                    use: "sig"
+                    alg: "RS256"
+    key_sets:
+        public_keys:
+            keys:
+                id:
+                    - 'jose.key.id_token_public_signature_key'
+        private_keys:
+            keys:
+                id:
+                    - 'jose.key.id_token_private_signature_key'
+                    - 'jose.key.access_token_signature_key'
+                    - 'jose.key.access_token_key_encryption_key'
+    easy_jwt_creator:
+        access_token:
+            signature_algorithms:
+                - 'HS512'
+            key_encryption_algorithms:
+                - 'A512KW'
+            content_encryption_algorithms:
+                - 'A256CBC-HS512'
+            compression_methods:
+                - 'DEF'
+        id_token:
+            signature_algorithms:
+                - 'RS256'
+    easy_jwt_loader:
+        access_token:
+            signature_algorithms:
+                - 'HS512'
+            key_encryption_algorithms:
+                - 'A512KW'
+            content_encryption_algorithms:
+                - 'A256CBC-HS512'
+            compression_methods:
+                - 'DEF'
+            claim_checkers:
+                - 'exp'
+                - 'iat'
+                - 'nbf'
+            header_checkers:
+                - 'crit'
+        client_assertion:
+            signature_algorithms:
+                - 'HS512'
+            claim_checkers:
+                - 'exp'
+                - 'iat'
+                - 'nbf'
+            header_checkers:
+                - 'crit'
+    checkers:
+        access_token:
+            claims:
+                - 'exp'
+                - 'iat'
+                - 'nbf'
+            headers:
+                - 'crit'
+oauth2_server:
+    scope:
+        policy: 'none'
+        available_scope: 'openid email profile address phone offline_access'
+    token_type_manager:
+        default: Bearer
+    bearer_token:
+        query_string: true
+        request_body: false
+    mac_token:
+        min_length: 50
+        max_length: 100
+        algorithm: 'hmac-sha-256'
+        timestamp_lifetime: 10
+    client_manager:
+        client_class: 'AppBundle\Entity\Client'
+        token_endpoint_auth_methods:
+            none: true
+            client_secret_post: false
+            client_secret_basic:
+                enabled: true
+                realm: 'OAuth2 Server - Client Authentication'
+            client_assertion_jwt:
+                enabled: true
+                jwt_loader: 'jose.jwt_loader.client_assertion'
+                encryption:
+                    enabled: false
+#                    jwk_set: 'jose.key_set.private_keys'
+#                    required: false
+    refresh_token:
+        token_class: 'AppBundle\Entity\RefreshToken'
+        token_manager: 'app.refresh_token_manager'
+        min_length: 50
+        max_length: 100
+    auth_code:
+        class: 'AppBundle\Entity\AuthCode'
+        manager: 'app.auth_code_manager'
+        min_length: 50
+        max_length: 100
+        enforce_pkce: true
+    token_endpoint:
+        client_manager: 'app.client_manager'
+        access_token_manager: 'app.access_token_manager'
+        refresh_token_manager: 'app.refresh_token_manager'
+        user_manager: 'app.user_manager'
+    jwt_access_token:
+        token_lifetime: 1800
+        issuer: '%oauth2_issuer%'
+        signature_algorithm: 'HS512'
+        signature_key: 'jose.key.access_token_signature_key'
+        jwt_creator: 'jose.jwt_creator.access_token'
+        jwt_loader: 'jose.jwt_loader.access_token'
+        token_encryption:
+            enabled: true
+            key_encryption_algorithm: 'A512KW'
+            content_encryption_algorithm: 'A256CBC-HS512'
+            key_encryption_key: 'jose.key.access_token_key_encryption_key'
+    jwt_bearer:
+        jwt_loader: 'jose.jwt_loader.client_assertion'
+        issue_refresh_token: false
+        encryption:
+            enabled: true
+            jwk_set: 'jose.key_set.private_keys'
+            required: true
+    authorization_endpoint:
+        request_object:
+            jwt_loader: 'jose.jwt_loader.client_assertion'
+            reference_enabled: true
+            jwkset: 'jose.key_set.private_keys'
+        option:
+            enforce_secured_redirect_uri: true
+            enforce_redirect_uri_storage: true
+            enforce_state: true
+            allow_response_mode_parameter: true
+    openid_connect:
+        pairwise_subject_identifier: null
+        jwks_uri:
+            enabled: true
+            public_keys: 'jose.key_set.public_keys'
+        metadata:
+            enabled: true
+        id_token:
+            jwt_creator: 'jose.jwt_creator.id_token'
+            signature_algorithm: 'RS512'
+            signature_key: 'jose.key.id_token_private_signature_key'
+        response_type:
+            id_token:
+                enabled: true
+            none:
+                enabled: true
+        userinfo_endpoint:
+            enabled: true
+            signature:
+                enabled: true
+                jwt_creator: 'jose.jwt_creator.id_token'
+                signature_algorithm: 'RS512'
+                signature_key: 'jose.key.id_token_private_signature_key'
+        form_post:
+            enabled: true
+        issuer_discovery:
+            main:
+                issuer: '%oauth2_issuer%'
+                server: 'https://www.my.server/'
+    security:
+        access_token_handler: 'oauth2_server.security.access_token_manager_handler'

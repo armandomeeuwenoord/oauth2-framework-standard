@@ -11,14 +11,8 @@
 
 namespace AppBundle\Entity;
 
-use SpomkyLabs\JoseBundle\Entity\Jot as Base;
+use SpomkyLabs\OAuth2ServerBundle\Plugin\JWTAccessTokenPlugin\Model\JWTAccessTokenManager as BaseAccessTokenManager;
 
-class Jot extends Base
+class AccessTokenManager extends BaseAccessTokenManager
 {
-    protected $id;
-
-    public function getId()
-    {
-        return $this->id;
-    }
 }

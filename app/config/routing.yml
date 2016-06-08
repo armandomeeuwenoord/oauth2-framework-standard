@@ -2,14 +2,29 @@
 token_endpoint:
     resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/TokenEndpointPlugin/Resources/config/routing/token_endpoint.xml"
 
-introspection_endpoint:
-    resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/TokenIntrospectionEndpointPlugin/Resources/config/routing/introspection_endpoint.xml"
-
 revocation_endpoint:
     resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/TokenRevocationEndpointPlugin/Resources/config/routing/revocation_endpoint.xml"
 
+introspection_endpoint:
+    resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/TokenIntrospectionEndpointPlugin/Resources/config/routing/introspection_endpoint.xml"
+
 authorization_endpoint:
     resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/AuthorizationEndpointPlugin/Resources/config/routing/authorization_endpoint.xml"
+
+userinfo_endpoint:
+    resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/OpenIdConnectPlugin/Resources/config/routing/userinfo_endpoint.xml"
+
+jwks_uri:
+    resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/OpenIdConnectPlugin/Resources/config/routing/jwks_uri.xml"
+
+metadata:
+    resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/OpenIdConnectPlugin/Resources/config/routing/metadata.xml"
+
+issuer_discovery:
+    path: '/.well-known/webfinger'
+    methods: 'GET'
+    defaults:
+        _controller: 'oauth2_server.openid_connect.issuer_discovery_controller.main:handleAction'
 
 # FOS User Bundle
 fos_user:

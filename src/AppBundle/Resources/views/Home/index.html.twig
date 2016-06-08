@@ -1,0 +1,31 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block breadcrumb %}
+    <ul class="breadcrumbs">
+        <li class="current"><a href="{{ path("homepage") }}">Home</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <h2>Welcome!</h2>
+    <p>
+        You are on your new authorization server based on the OAuth2 Framework Protocol.<br/>
+        This server also supports OpenID Connect as Identity layer.<br/>
+    </p>
+    <p>
+        This server is based on Symfony 3.1 and the Spomky-Labs OAuth2/OpenID Connect Bundle.<br/>
+        It also supports JWT based access token and assertions. Using this technology, you will be able
+        to protect any kind of resource server without database queries.
+    </p>
+    <p>
+        Before using it, you must execute the following actions:
+    </p>
+    <ol>
+        <li>Create your database,</li>
+        <li>Create a user to administrate your server,</li>
+        <li>Create your first client.</li>
+    </ol>
+    <p>
+        Click on that link to start the process.
+    </p>
+{% endblock %}

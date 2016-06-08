@@ -11,8 +11,8 @@
 
 namespace AppBundle\Entity;
 
-use SpomkyLabs\OAuth2ServerBundle\Plugin\RefreshTokenGrantTypePlugin\Model\RefreshTokenManager as BaseRefreshTokenManager;
+use SpomkyLabs\OAuth2ServerBundle\Plugin\ClientManagerPlugin\Model\ClientManager as BaseClientManager;
 
-class RefreshTokenManager extends BaseRefreshTokenManager
+class ClientManager extends BaseClientManager
 {
 }
