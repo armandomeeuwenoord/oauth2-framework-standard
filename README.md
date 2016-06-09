@@ -5,8 +5,8 @@ OAuth2 Server Standard Edition
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/52cc7f26-c996-4aaf-b2de-85503b935358/big.png)](https://insight.sensiolabs.com/projects/52cc7f26-c996-4aaf-b2de-85503b935358)
 
-This project is a Symfony2 application to create OAuth2 Server.
-It is based on the Symfony 2.7 Standard Edition and includes the following bundles:
+This project is a Symfony application to create OAuth2 Server.
+It is based on the Symfony 2.8 Standard Edition and includes the following bundles:
 
 * `Spomky-Labs OAuth2 Server Bundle` for all OAuth2 components
 * `Spomky-Labs Jose Bundle` for JWT support
