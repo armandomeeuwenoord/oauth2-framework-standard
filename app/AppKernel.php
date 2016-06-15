@@ -42,6 +42,8 @@ class AppKernel extends Kernel
                 new \SpomkyLabs\OAuth2ServerBundle\Plugin\OpenIdConnectPlugin\OpenIdConnectPlugin(),
                 new \SpomkyLabs\OAuth2ServerBundle\Plugin\SecurityPlugin\SecurityPlugin(),
                 new \SpomkyLabs\OAuth2ServerBundle\Plugin\CleanerPlugin\CleanerPlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\FormPostResponseModePlugin\FormPostResponseModePlugin(),
+                new \SpomkyLabs\OAuth2ServerBundle\Plugin\NoneGrantTypePlugin\NoneGrantTypePlugin(),
             ]),
         ];
 

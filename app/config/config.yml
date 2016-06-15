@@ -106,14 +106,14 @@ jose:
         id_token_private_signature_key:
             file:
                 path: "%kernel.root_dir%/keys/RSA/private.key"
-                password: "test"
+                password: "tests"
         id_token_public_signature_key:
             file:
                 path: "%kernel.root_dir%/keys/RSA/public.key"
                 additional_values:
                     kid: "2016-06-07"
                     use: "sig"
-                    alg: "RS256"
+                    alg: "RS512"
     key_sets:
         public_keys:
             keys:
@@ -130,20 +130,28 @@ jose:
             signature_algorithms:
                 - 'HS512'
             key_encryption_algorithms:
-                - 'A512KW'
+                - 'A256KW'
             content_encryption_algorithms:
                 - 'A256CBC-HS512'
             compression_methods:
                 - 'DEF'
         id_token:
             signature_algorithms:
-                - 'RS256'
+                - 'RS512'
+            key_encryption_algorithms:
+                - 'A128KW'
+                - 'A192KW'
+                - 'A256KW'
+            content_encryption_algorithms:
+                - 'A128CBC-HS256'
+                - 'A192CBC-HS384'
+                - 'A256CBC-HS512'
     easy_jwt_loader:
         access_token:
             signature_algorithms:
                 - 'HS512'
             key_encryption_algorithms:
-                - 'A512KW'
+                - 'A256KW'
             content_encryption_algorithms:
                 - 'A256CBC-HS512'
             compression_methods:
@@ -157,6 +165,14 @@ jose:
         client_assertion:
             signature_algorithms:
                 - 'HS512'
+            key_encryption_algorithms:
+                - 'A128KW'
+                - 'A192KW'
+                - 'A256KW'
+            content_encryption_algorithms:
+                - 'A128CBC-HS256'
+                - 'A192CBC-HS384'
+                - 'A256CBC-HS512'
             claim_checkers:
                 - 'exp'
                 - 'iat'
@@ -189,7 +205,7 @@ oauth2_server:
         client_class: 'AppBundle\Entity\Client'
         token_endpoint_auth_methods:
             none: true
-            client_secret_post: false
+            client_secret_post: true
             client_secret_basic:
                 enabled: true
                 realm: 'OAuth2 Server - Client Authentication'
@@ -197,9 +213,9 @@ oauth2_server:
                 enabled: true
                 jwt_loader: 'jose.jwt_loader.client_assertion'
                 encryption:
-                    enabled: false
-#                    jwk_set: 'jose.key_set.private_keys'
-#                    required: false
+                    enabled: true
+                    jwk_set: 'jose.key_set.private_keys'
+                    required: false
     refresh_token:
         token_class: 'AppBundle\Entity\RefreshToken'
         token_manager: 'app.refresh_token_manager'
@@ -225,7 +241,7 @@ oauth2_server:
         jwt_loader: 'jose.jwt_loader.access_token'
         token_encryption:
             enabled: true
-            key_encryption_algorithm: 'A512KW'
+            key_encryption_algorithm: 'A256KW'
             content_encryption_algorithm: 'A256CBC-HS512'
             key_encryption_key: 'jose.key.access_token_key_encryption_key'
     jwt_bearer:
@@ -236,6 +252,7 @@ oauth2_server:
             jwk_set: 'jose.key_set.private_keys'
             required: true
     authorization_endpoint:
+        login_route_name: "fos_user_security_login"
         request_object:
             jwt_loader: 'jose.jwt_loader.client_assertion'
             reference_enabled: true
@@ -246,7 +263,13 @@ oauth2_server:
             enforce_state: true
             allow_response_mode_parameter: true
     openid_connect:
-        pairwise_subject_identifier: null
+        claims_supported: ["sub", "name", "given_name", "family_name", "middle_name", "nickname", "preferred_username", "profile", "picture", "website", "email", "email_verified", "gender", "birthdate", "zoneinfo", "locale", "phone_number", "phone_number_verified", "address", "updated_at"]
+        claims_locales_supported:
+            - "en"
+            - "fr"
+            - "de"
+            - "en"
+        pairwise_subject_identifier: 'app.hash_subject_type'
         jwks_uri:
             enabled: true
             public_keys: 'jose.key_set.public_keys'
@@ -259,8 +282,6 @@ oauth2_server:
         response_type:
             id_token:
                 enabled: true
-            none:
-                enabled: true
         userinfo_endpoint:
             enabled: true
             signature:
@@ -268,8 +289,6 @@ oauth2_server:
                 jwt_creator: 'jose.jwt_creator.id_token'
                 signature_algorithm: 'RS512'
                 signature_key: 'jose.key.id_token_private_signature_key'
-        form_post:
-            enabled: true
         issuer_discovery:
             main:
                 issuer: '%oauth2_issuer%'

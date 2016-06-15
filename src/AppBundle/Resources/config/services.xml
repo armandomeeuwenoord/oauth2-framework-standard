@@ -19,5 +19,11 @@
 
         <service id="app.auth_code_manager" class="AppBundle\Entity\AuthCodeManager" parent="oauth2_server.auth_code.manager.default">
         </service>
+
+        <service id="app.hash_subject_type" class="OAuth2\OpenIdConnect\Pairwise\HashedSubjectIdentifier">
+            <argument>ABCDEFGHIJKLMNOPQRSTUVWXYZ</argument>
+            <argument>sha512</argument>
+            <argument>abcdefghijklmnopqrstuvwxyz</argument>
+        </service>
     </services>
 </container>
