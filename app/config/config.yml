@@ -268,7 +268,6 @@ oauth2_server:
             - "en"
             - "fr"
             - "de"
-            - "en"
         pairwise_subject_identifier: 'app.hash_subject_type'
         jwks_uri:
             enabled: true
