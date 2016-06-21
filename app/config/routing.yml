@@ -17,6 +17,9 @@ userinfo_endpoint:
 jwks_uri:
     resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/OpenIdConnectPlugin/Resources/config/routing/jwks_uri.xml"
 
+session_management:
+    resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/OpenIdConnectPlugin/Resources/config/routing/session_management.xml"
+
 metadata:
     resource: "@SpomkyLabsOAuth2ServerBundle/Plugin/OpenIdConnectPlugin/Resources/config/routing/metadata.xml"
 

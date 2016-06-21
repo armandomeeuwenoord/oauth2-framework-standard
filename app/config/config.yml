@@ -190,7 +190,13 @@ jose:
 oauth2_server:
     scope:
         policy: 'none'
-        available_scope: 'openid email profile address phone offline_access'
+        available_scope:
+            - 'openid'
+            - 'email'
+            - 'profile'
+            - 'address'
+            - 'phone'
+            - 'offline_access'
     token_type_manager:
         default: Bearer
     bearer_token:
@@ -221,7 +227,7 @@ oauth2_server:
         token_manager: 'app.refresh_token_manager'
         min_length: 50
         max_length: 100
-    auth_code:
+    auth_code_grant_type:
         class: 'AppBundle\Entity\AuthCode'
         manager: 'app.auth_code_manager'
         min_length: 50
@@ -244,7 +250,7 @@ oauth2_server:
             key_encryption_algorithm: 'A256KW'
             content_encryption_algorithm: 'A256CBC-HS512'
             key_encryption_key: 'jose.key.access_token_key_encryption_key'
-    jwt_bearer:
+    jwt_bearer_grant_type:
         jwt_loader: 'jose.jwt_loader.client_assertion'
         issue_refresh_token: false
         encryption:
@@ -255,7 +261,9 @@ oauth2_server:
         login_route_name: "fos_user_security_login"
         request_object:
             jwt_loader: 'jose.jwt_loader.client_assertion'
-            reference_enabled: true
+            reference:
+                enabled: true
+                uris_registration_required: true
             jwkset: 'jose.key_set.private_keys'
         option:
             enforce_secured_redirect_uri: true
@@ -263,7 +271,27 @@ oauth2_server:
             enforce_state: true
             allow_response_mode_parameter: true
     openid_connect:
-        claims_supported: ["sub", "name", "given_name", "family_name", "middle_name", "nickname", "preferred_username", "profile", "picture", "website", "email", "email_verified", "gender", "birthdate", "zoneinfo", "locale", "phone_number", "phone_number_verified", "address", "updated_at"]
+        claims_supported:
+            - "sub"
+            - "name"
+            - "given_name"
+            - "family_name"
+            - "middle_name"
+            - "nickname"
+            - "preferred_username"
+            - "profile"
+            - "picture"
+            - "website"
+            - "email"
+            - "email_verified"
+            - "gender"
+            - "birthdate"
+            - "zoneinfo"
+            - "locale"
+            - "phone_number"
+            - "phone_number_verified"
+            - "address"
+            - "updated_at"
         claims_locales_supported:
             - "en"
             - "fr"
@@ -273,6 +301,8 @@ oauth2_server:
             enabled: true
             public_keys: 'jose.key_set.public_keys'
         metadata:
+            enabled: true
+        session_management:
             enabled: true
         id_token:
             jwt_creator: 'jose.jwt_creator.id_token'

@@ -95,13 +95,13 @@ class MenuBuilder
                     'icon'          => 'fa fa-times',
                     'icon_position' => 'before',
                 ]);
-                $menu->addChild(
+                /*$menu->addChild(
                     $translator->trans('layout.client.password.create', [], 'FOSUserBundle'),
                     ['route' => 'manager_password_client_add']
                 )->setExtras([
                     'icon'          => 'fa fa-times',
                     'icon_position' => 'before',
-                ]);
+                ]);*/
             }
         }
 
