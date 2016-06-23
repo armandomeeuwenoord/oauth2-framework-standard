@@ -47,8 +47,16 @@ class UserManager extends Base implements UserManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function getUser($username)
+    public function getUserByUsername($username)
     {
-        return $this->findUserByUsername($username);
+        return $this->findUserBy(['username' => $username]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUserByPublicId($public_id)
+    {
+        return $this->findUserBy(['public_id' => $public_id]);
     }
 }

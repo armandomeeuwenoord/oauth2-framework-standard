@@ -22,7 +22,7 @@ if (!in_array(@$_SERVER['REMOTE_ADDR'], array(
     exit('This script is only accessible from localhost.');
 }
 
-require_once dirname(__FILE__).'/../var/SymfonyRequirements.php';
+require_once dirname(__FILE__) . '/../var/SymfonyRequirements.php';
 
 $symfonyRequirements = new SymfonyRequirements();
 
@@ -36,8 +36,8 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="robots" content="noindex,nofollow" />
         <title>Symfony Configuration Checker</title>
-        <link rel="stylesheet" href="bundles/framework/css/structure.css" media="all" />
-        <link rel="stylesheet" href="bundles/framework/css/body.css" media="all" />
+        <link rel="stylesheet" href="sl/bundles/framework/css/structure.css" media="all" />
+        <link rel="stylesheet" href="sl/bundles/framework/css/body.css" media="all" />
         <style type="text/css">
             /* styles copied from bundles/sensiodistribution/webconfigurator/css/install.css */
             body {
@@ -96,6 +96,10 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
             .sf-reset .ko {
                 background-color: #d66;
             }
+            .sf-reset p.help {
+                padding: 12px 16px;
+                word-break: break-word;
+            }
             .version {
                 text-align: right;
                 font-size: 10px;
@@ -120,7 +124,7 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
         <div id="content">
             <div class="header clear-fix">
                 <div class="header-logo">
-                    <img src="bundles/framework/images/logo_symfony.png" alt="Symfony" />
+                    <img src="sl/bundles/framework/images/logo_symfony.png" alt="Symfony" />
                 </div>
 
                 <div class="search">
@@ -128,7 +132,7 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
                     <div class="form-row">
 
                       <label for="search-id">
-                          <img src="bundles/framework/images/grey_magnifier.png" alt="Search on Symfony website" />
+                          <img src="sl/bundles/framework/images/grey_magnifier.png" alt="Search on Symfony website" />
                       </label>
 
                       <input name="q" id="search-id" type="search" placeholder="Search on Symfony website" />
@@ -159,7 +163,9 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
                             <p>Major problems have been detected and <strong>must</strong> be fixed before continuing:</p>
                             <ol>
                                 <?php foreach ($majorProblems as $problem): ?>
-                                    <li><?php echo $problem->getHelpHtml() ?></li>
+                                    <li><?php echo $problem->getTestMessage() ?>
+                                        <p class="help"><em><?php echo $problem->getHelpHtml() ?></em></p>
+                                    </li>
                                 <?php endforeach; ?>
                             </ol>
                         <?php endif; ?>
@@ -172,7 +178,9 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
                             </p>
                             <ol>
                                 <?php foreach ($minorProblems as $problem): ?>
-                                    <li><?php echo $problem->getHelpHtml() ?></li>
+                                    <li><?php echo $problem->getTestMessage() ?>
+                                        <p class="help"><em><?php echo $problem->getHelpHtml() ?></em></p>
+                                    </li>
                                 <?php endforeach; ?>
                             </ol>
                         <?php endif; ?>

@@ -15,9 +15,15 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        token:
+            pattern: ^/userinfo
+            oauth2: ~
+
         token:
             pattern: ^/oauth/v2/(token|revoke|introspect)
             security: false
+
         main:
             pattern: ^/
             form_login:
