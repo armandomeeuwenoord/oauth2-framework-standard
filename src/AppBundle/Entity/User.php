@@ -12,7 +12,7 @@ class User extends Base implements UserInterface
 {
     use ResourceOwnerTrait;
     use UserTrait;
-    
+
     protected $id;
 
     public function __construct()

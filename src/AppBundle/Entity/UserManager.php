@@ -28,6 +28,7 @@ class UserManager extends Base implements UserManagerInterface
         }
         $encoded_email = mb_substr($resource, 0, $pos, 'utf-8');
         $email = urldecode($encoded_email);
+
         return $this->findUserByEmail($email);
     }
 
