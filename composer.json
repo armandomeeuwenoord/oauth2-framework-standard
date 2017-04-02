@@ -1,5 +1,5 @@
 {
-    "name": "spomky-labs/oauth2-server-standard",
+    "name": "oauth2-framework/oauth2-framework-standard",
     "license": "MIT",
     "type": "project",
     "description": "The \"OAuth2 Server Standard Edition\" distribution",
