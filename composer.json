@@ -40,7 +40,9 @@
 
         "twitter/bootstrap": "^3.3",
         "components/jquery": "^1.12",
-        "bmatzner/fontawesome-bundle": "^4.7"
+        "bmatzner/fontawesome-bundle": "^4.7",
+        "http-interop/http-factory-diactoros": "^0.3",
+        "php-http/curl-client": "^1.7"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

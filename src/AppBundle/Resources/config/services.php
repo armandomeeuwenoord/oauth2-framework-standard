@@ -24,13 +24,15 @@ use function Fluent\autowire;
 use function Fluent\create;
 use function Fluent\get;
 use Http\Client\Curl\Client;
-use Http\Factory\Diactoros;
+use Http\Factory\Diactoros\RequestFactory;
+use Http\Factory\Diactoros\ResponseFactory;
+use Http\Factory\Diactoros\UriFactory;
 
 return [
     Client::class => autowire(),
-    Diactoros\RequestFactory::class => autowire(),
-    Diactoros\ResponseFactory::class => autowire(),
-    Diactoros\UriFactory::class => autowire(),
+    RequestFactory::class => autowire(),
+    ResponseFactory::class => autowire(),
+    UriFactory::class => autowire(),
 
     'eventstore.client' => create(EventStore::class)
         ->arguments(
