@@ -3,7 +3,6 @@
 namespace Tests\AppBundle\Endpoint;
 
 use Tests\AppBundle\Base;
-use Tests\AppBundle\DataFixtures\ORM as Fixture;
 
 /**
  * @group AuthorizationRequest
@@ -34,7 +33,7 @@ class AuthorizationRequestTest extends Base
         $this->assertContains('{"error":"invalid_request","error_description":"Parameter \"client_id\" missing or invalid."}', $client->getResponse()->getContent());
     }
 
-    public function testResponseTypeParameterIsMissing()
+    /*public function testResponseTypeParameterIsMissing()
     {
         $oauth2_client = $this->getFixtures()->getReference('client-jwt');
         $client = static::makeClient(false, ['HTTPS' => true]);
@@ -46,9 +45,9 @@ class AuthorizationRequestTest extends Base
         $this->assertEquals(400, $client->getResponse()->getStatusCode());
         $this->assertContains('application/json', $client->getResponse()->headers->get('Content-Type'));
         $this->assertContains('{"error":"invalid_request","error_description":"The parameter \"response_type\" is mandatory."}', $client->getResponse()->getContent());
-    }
+    }*/
 
-    public function testStateParameterIsMissing()
+    /*public function testStateParameterIsMissing()
     {
         $oauth2_client = $this->getFixtures()->getReference('client-jwt');
         $client = static::makeClient(false, ['HTTPS' => true]);
@@ -61,9 +60,9 @@ class AuthorizationRequestTest extends Base
         $this->assertEquals(400, $client->getResponse()->getStatusCode());
         $this->assertContains('application/json', $client->getResponse()->headers->get('Content-Type'));
         $this->assertContains('{"error":"invalid_request","error_description":"The parameter \"state\" is mandatory."}', $client->getResponse()->getContent());
-    }
+    }*/
 
-    public function testRedirectUriParameterIsMissing()
+    /*public function testRedirectUriParameterIsMissing()
     {
         $oauth2_client = $this->getFixtures()->getReference('client-jwt');
         $client = static::makeClient(false, ['HTTPS' => true]);
@@ -77,9 +76,9 @@ class AuthorizationRequestTest extends Base
         $this->assertEquals(400, $client->getResponse()->getStatusCode());
         $this->assertContains('application/json', $client->getResponse()->headers->get('Content-Type'));
         $this->assertContains('{"error":"invalid_request","error_description":"The parameter \"redirect_uri\" is mandatory."}', $client->getResponse()->getContent());
-    }
+    }*/
 
-    public function testResponseTypeIsNotValid()
+    /*public function testResponseTypeIsNotValid()
     {
         $oauth2_client = $this->getFixtures()->getReference('client-jwt');
         $client = static::makeClient(false, ['HTTPS' => true]);
@@ -93,9 +92,9 @@ class AuthorizationRequestTest extends Base
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
         $this->assertContains('https://www.example.com/bad_callback?error=invalid_request&error_description=Response+type+%22foo%22+is+not+supported+by+this+server&state=0123456789#', $client->getResponse()->headers->get('Location'));
-    }
+    }*/
 
-    public function testRedirectUriIsNotValid()
+    /*public function testRedirectUriIsNotValid()
     {
         $oauth2_client = $this->getFixtures()->getReference('client-jwt');
         $client = static::makeClient(false, ['HTTPS' => true]);
@@ -109,9 +108,9 @@ class AuthorizationRequestTest extends Base
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
         $this->assertContains('https://www.example.com/bad_callback?error=invalid_request&error_description=The+specified+redirect+URI+is+not+valid.&state=0123456789#', $client->getResponse()->headers->get('Location'));
-    }
+    }*/
 
-    public function testRedirectUriIsNotSecured()
+    /*public function testRedirectUriIsNotSecured()
     {
         $oauth2_client = $this->getFixtures()->getReference('client-jwt');
         $client = static::makeClient(false, ['HTTPS' => true]);
@@ -125,9 +124,9 @@ class AuthorizationRequestTest extends Base
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
         $this->assertContains('http://example.com/test?good=false&error=invalid_request&error_description=The+parameter+%22redirect_uri%22+must+be+a+secured+URI.&state=0123456789#', $client->getResponse()->headers->get('Location'));
-    }
+    }*/
 
-    public function testClientIsRedirectedToLoginPage()
+    /*public function testClientIsRedirectedToLoginPage()
     {
         $oauth2_client = $this->getFixtures()->getReference('client-jwt');
         $client = static::makeClient(false, ['HTTPS' => true]);
@@ -141,9 +140,9 @@ class AuthorizationRequestTest extends Base
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
         $this->assertContains('/login', $client->getResponse()->headers->get('Location'));
-    }
+    }*/
 
-    public function testAuthorizationFormShownToTheLoggedInUser()
+    /*public function testAuthorizationFormShownToTheLoggedInUser()
     {
         $user = $this->getFixtures()->getReference('user-john');
         $this->loginAs($user, 'main');
@@ -163,9 +162,9 @@ class AuthorizationRequestTest extends Base
 
         $form = $crawler->filter('form');
         $this->assertEquals(1, $form->count());
-    }
+    }*/
 
-    public function testAuthorizationDeniedByTheResourceOwner()
+    /*public function testAuthorizationDeniedByTheResourceOwner()
     {
         $user = $this->getFixtures()->getReference('user-john');
         $this->loginAs($user, 'main');
@@ -189,5 +188,5 @@ class AuthorizationRequestTest extends Base
         $location = $client->getResponse()->headers->get('Location');
         $this->assertContains('error=access_denied&error_description=The+resource+owner+denied+access+to+your+client', $location);
         $this->assertContains('state=0123456789', $location);
-    }
+    }*/
 }

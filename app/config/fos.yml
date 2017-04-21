@@ -1,0 +1,10 @@
+#FOS User Bundle
+fos_user:
+    db_driver: 'orm' # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: 'main'
+    user_class: 'AppBundle\Entity\User'
+    service:
+        user_manager: 'MyUserAccountManager'
+    from_email:
+        address: 'test@foo.com'
+        sender_name: 'test@foo.com'

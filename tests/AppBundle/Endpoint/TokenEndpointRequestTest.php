@@ -3,7 +3,6 @@
 namespace Tests\AppBundle\Endpoint;
 
 use Tests\AppBundle\Base;
-use Tests\AppBundle\DataFixtures\ORM as Fixture;
 
 /**
  * Please note that other tests are performed by grant types that need the token endpoint

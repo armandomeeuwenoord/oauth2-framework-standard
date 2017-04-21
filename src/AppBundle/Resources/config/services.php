@@ -14,85 +14,91 @@ declare(strict_types=1);
 use AppBundle\Entity\ResourceRepository;
 use AppBundle\Entity\UserManager;
 use AppBundle\Entity\UserRepository;
-use AppBundle\Listener;
-use AppBundle\Service\AccessTokenHandler;
+use AppBundle\Service\EventStore;
 use AppBundle\Service\UserProvider;
+use AppBundle\Service\ResourceServerRepository;
 use OAuth2Framework\Component\Server\Endpoint\UserInfo\Pairwise\EncryptedSubjectIdentifier;
-use OAuth2Framework\Component\Server\Event\AccessToken;
-use OAuth2Framework\Component\Server\Event\AuthCode;
-use OAuth2Framework\Component\Server\Event\Client;
-use OAuth2Framework\Component\Server\Event\RefreshToken;
-use OAuth2Framework\Component\Server\Tests\Stub\ResourceServerRepository;
+use OAuth2Framework\Bundle\Server\Model\AccessTokenByReferenceRepository;
+use OAuth2Framework\Component\Server\Model\Scope\ScopeRepository;
+use function Fluent\autowire;
 use function Fluent\create;
 use function Fluent\get;
+use Http\Client\Curl\Client;
+use Http\Factory\Diactoros;
 
 return [
-    'oauth2_server.event_store.access_token' => create(\AppBundle\Service\EventStore::class)
+    Client::class => autowire(),
+    Diactoros\RequestFactory::class => autowire(),
+    Diactoros\ResponseFactory::class => autowire(),
+    Diactoros\UriFactory::class => autowire(),
+
+    'eventstore.client' => create(EventStore::class)
         ->arguments(
             '%kernel.cache_dir%',
-            'access_token'
+            'client'
         ),
 
-    OAuth2Framework\Component\Server\Model\AccessToken\AccessTokenRepositoryInterface::class => create(OAuth2Framework\Bundle\Server\Model\AccessTokenRepository::class) //Fixme
+    'eventstore.authcode' => create(EventStore::class)
         ->arguments(
-            get('oauth2_server.event_store.access_token'),
-            get('event_recorder'),
-            1800
+            '%kernel.cache_dir%',
+            'authcode'
         ),
 
-    \OAuth2Framework\Component\Server\Model\UserAccount\UserAccountManagerInterface::class => create(UserManager::class)
+    'eventstore.refreshtoken' => create(EventStore::class)
+        ->arguments(
+            '%kernel.cache_dir%',
+            'refreshtoken'
+        ),
+
+    'eventstore.preconfiguredauthorization' => create(EventStore::class)
+        ->arguments(
+            '%kernel.cache_dir%',
+            'preconfiguredauthorization'
+        ),
+
+    'eventstore.initialaccesstoken' => create(EventStore::class)
+        ->arguments(
+            '%kernel.cache_dir%',
+            'initialaccesstoken'
+        ),
+
+    'eventstore.accesstoken' => create(EventStore::class)
+        ->arguments(
+            '%kernel.cache_dir%',
+            'initialaccesstoken'
+        ),
+
+    'MyAccessTokenRepository' => create(AccessTokenByReferenceRepository::class)
+        ->arguments(
+            100,
+            120,
+            1800,
+            get('eventstore.accesstoken'),
+            get('event_recorder'),
+            'cache.app'
+        ),
+
+    'MyUserAccountManager' => create(UserManager::class)
         ->arguments(
             get('fos_user.util.password_updater'),
             get('fos_user.util.canonical_fields_updater'),
             get('fos_user.object_manager'),
             '%fos_user.model.user.class%'
         ),
-    \OAuth2Framework\Component\Server\Model\UserAccount\UserAccountRepositoryInterface::class => create(UserRepository::class),
-    ResourceServerRepository::class => create(),
-    ResourceRepository::class => create(),
-
-    'oauth2_server.test_bundle.user_provider' => create(UserProvider::class)
+    'MyUserAccountRepository' => create(UserRepository::class),
+    'MyResourceServerRepository' => create(ResourceServerRepository::class),
+    'MyResourceRepository' => create(ResourceRepository::class),
+    'MyUserProvider' => autowire(UserProvider::class),
+    'MyScopeRepository' => create(ScopeRepository::class)
         ->arguments(
-            get(\OAuth2Framework\Component\Server\Model\UserAccount\UserAccountRepositoryInterface::class)
+            ['openid', 'email', 'profile', 'address', 'phone', 'offline_access']
         ),
 
-/*    Listener\ClientCreatedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => Client\ClientCreatedEvent::class]),
-    Listener\ClientDeletedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => Client\ClientDeletedEvent::class]),
-    Listener\ClientOwnerChangedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => Client\ClientOwnerChangedEvent::class]),
-    Listener\ClientParametersUpdatedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => Client\ClientParametersUpdatedEvent::class]),*/
-
-/*    Listener\AccessTokenCreatedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => AccessToken\AccessTokenCreatedEvent::class]),
-    Listener\AccessTokenRevokedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => AccessToken\AccessTokenRevokedEvent::class]),*/
-
-/*    Listener\RefreshTokenCreatedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => RefreshToken\RefreshTokenCreatedEvent::class]),
-    Listener\RefreshTokenRevokedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => RefreshToken\RefreshTokenRevokedEvent::class]),*/
-
-/*    Listener\AuthCodeCreatedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => AuthCode\AuthCodeCreatedEvent::class]),
-    Listener\AuthCodeRevokedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => AuthCode\AuthCodeRevokedEvent::class]),
-    Listener\AuthCodeMarkedAsUsedListener::class => create()
-        ->tag('event_subscriber', ['subscribes_to' => AuthCode\AuthCodeMarkedAsUsedEvent::class]),*/
-
-/*    AccessTokenHandler::class => create()
-        ->arguments(
-            get(OAuth2Framework\Component\Server\Model\AccessToken\AccessTokenRepositoryInterface::class)
-        )
-        ->tag('oauth2_server_access_token_handler'),*/
-
-/*    'pairwise_subject_identifier' => create(EncryptedSubjectIdentifier::class)
+    'MyPairwiseSubjectIdentifier' => create(EncryptedSubjectIdentifier::class)
         ->arguments(
             'This is my secret Key !!!',
             'aes-128-cbc',
             mb_substr('This is my salt or my IV !!!', 0, 16, '8bit'),
             mb_substr('This is my salt or my IV !!!', 0, 16, '8bit')
-        ),*/
+        ),
 ];
