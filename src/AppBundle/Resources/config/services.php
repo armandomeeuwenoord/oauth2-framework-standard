@@ -77,7 +77,7 @@ return [
             1800,
             get('eventstore.accesstoken'),
             get('event_recorder'),
-            'cache.app'
+            get('cache.app')
         ),
 
     'MyUserAccountManager' => create(UserManager::class)

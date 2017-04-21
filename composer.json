@@ -42,7 +42,9 @@
         "components/jquery": "^1.12",
         "bmatzner/fontawesome-bundle": "^4.7",
         "http-interop/http-factory-diactoros": "^0.3",
-        "php-http/curl-client": "^1.7"
+        "php-http/curl-client": "^1.7",
+        "zendframework/zend-diactoros": "^1.4",
+        "symfony/psr-http-message-bridge": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

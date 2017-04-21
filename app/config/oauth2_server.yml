@@ -130,7 +130,7 @@ oauth2_server:
             enabled: true
             path: '/authorize'
             #allow_scope_selection: true
-            login_route_name: 'app_login'
+            login_route_name: 'fos_user_security_login'
             response_mode:
                 allow_response_mode_parameter: true
                 form_post:

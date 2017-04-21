@@ -41,7 +41,7 @@ final class User extends BaseUser implements UserAccountInterface
     protected $publicId;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @var integer|null
      */
     protected $lastLoginAt = null;
