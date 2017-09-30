@@ -3,7 +3,6 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: fos.yml }
-    - { resource: jose.yml }
     - { resource: assetic.yml }
     - { resource: oauth2_server.yml }
 

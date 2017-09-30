@@ -19,7 +19,10 @@ class AppKernel extends Kernel
 
             new FOS\UserBundle\FOSUserBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new SpomkyLabs\JoseBundle\SpomkyLabsJoseBundle(),
+            new Jose\Bundle\JoseFramework\JoseFrameworkBundle(),
+            new Jose\Bundle\Checker\CheckerBundle(),
+            new Jose\Bundle\Signature\SignatureBundle(),
+            new Jose\Bundle\Encryption\EncryptionBundle(),
             new SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
             new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
             new OAuth2Framework\Bundle\Server\OAuth2FrameworkServerBundle(),
