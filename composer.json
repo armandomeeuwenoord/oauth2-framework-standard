@@ -5,17 +5,13 @@
     "description": "The \"OAuth2 Server Standard Edition\" distribution",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "AppBundle\\": "src/AppBundle"
         },
-        "classmap": [
-            "app/AppKernel.php",
-            "app/AppCache.php"
-        ]
+        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
+        "psr-4": { "Tests\\": "tests/" },
+        "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "require": {
         "php": "^7.1",
@@ -69,6 +65,12 @@
             "@symfony-scripts"
         ]
     },
+    "config": {
+        "platform": {
+            "php": "7.1.9"
+        },
+        "sort-packages": true
+    },
     "extra": {
         "symfony-app-dir": "app",
         "symfony-bin-dir": "bin",
@@ -79,6 +81,8 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         },
-        "branch-alias": null
+        "branch-alias": {
+            "dev-master": "3.3-dev"
+        }
     }
 }
