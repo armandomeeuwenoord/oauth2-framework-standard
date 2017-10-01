@@ -25,7 +25,7 @@ use Ramsey\Uuid\Uuid;
  * @ORM\Entity
  * @ORM\Table(name="users")
  */
-final class User extends BaseUser implements UserAccountInterface
+class User extends BaseUser implements UserAccountInterface
 {
     /**
      * @ORM\Id
