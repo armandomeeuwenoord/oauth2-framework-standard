@@ -14,7 +14,6 @@
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "require": {
-        "ext-apcu": "*",
         "php": "^7.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
