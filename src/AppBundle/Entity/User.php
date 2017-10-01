@@ -24,6 +24,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
  */
 class User extends BaseUser implements UserAccountInterface
 {

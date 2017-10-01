@@ -13,17 +13,26 @@ declare(strict_types=1);
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\EntityRepository;
 use OAuth2Framework\Component\Server\Model\UserAccount\UserAccountId;
 use OAuth2Framework\Component\Server\Model\UserAccount\UserAccountRepositoryInterface;
 
-final class UserRepository implements UserAccountRepositoryInterface
+final class UserRepository extends EntityRepository implements UserAccountRepositoryInterface
 {
     /**
      * {@inheritdoc}
      */
     public function findOneByUsername(string $username)
     {
-        //return array_key_exists($username, $this->usersByUsername) ? $this->usersByUsername[$username] : null;
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder()
+        ->select('u')
+        ->from(User::class, 'u')
+        ->where('u.username = :username')
+        ->setParameter('username', $username);
+
+        return $queryBuilder
+            ->getQuery()
+            ->getSingleResult();
     }
 
     /**
@@ -31,6 +40,14 @@ final class UserRepository implements UserAccountRepositoryInterface
      */
     public function findUserAccount(UserAccountId $publicId)
     {
-        //return array_key_exists($publicId->getValue(), $this->usersByPublicId) ? $this->usersByPublicId[$publicId->getValue()] : null;
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder()
+            ->select('u')
+            ->from(User::class, 'u')
+            ->where('u.publicId = :publicId')
+            ->setParameter('publicId', $publicId);
+
+        return $queryBuilder
+            ->getQuery()
+            ->getSingleResult();
     }
 }

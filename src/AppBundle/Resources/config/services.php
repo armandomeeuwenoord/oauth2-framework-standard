@@ -87,7 +87,9 @@ return [
             get('fos_user.object_manager'),
             '%fos_user.model.user.class%'
         ),
-    'MyUserAccountRepository' => create(UserRepository::class),
+    'MyUserAccountRepository' => \Fluent\factory([get('doctrine.orm.default_entity_manager'), 'getRepository'], UserRepository::class)
+        ->arguments(\AppBundle\Entity\User::class),
+
     'MyResourceServerRepository' => create(ResourceServerRepository::class),
     'MyResourceRepository' => create(ResourceRepository::class),
     'MyUserProvider' => autowire(UserProvider::class),
