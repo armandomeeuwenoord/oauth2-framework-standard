@@ -2,31 +2,36 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
-    # You should uncomment this if you want use pdo_sqlite
-    # database_path: "%kernel.root_dir%/data.db3"
-
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
-
-    # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
-
-    cookie_name:       PHPSESSID
-
+    database_driver: '%env(DATABASE_DRIVER)%'
+    database_host: '%env(DATABASE_HOST)%'
+    database_port: '%env(DATABASE_PORT)%'
+    database_name: '%env(DATABASE_NAME)%'
+    database_user: '%env(DATABASE_USER)%'
+    database_password: '%env(DATABASE_PASSWORD)%'
+    mailer_transport: '%env(MAILER_TRANSPORT)%'
+    mailer_host: '%env(MAILER_HOST)%'
+    mailer_user: '%env(MAILER_USER)%'
+    mailer_password: '%env(MAILER_PASSWORD)%'
+    secret: '%env(SECRET)%'
+    cookie_name: '%env(COOKIE_NAME)%'
     oauth2_server_url: '%env(OAUTH2_SERVER_URL)%'
     oauth2_server_private_key_set_signature: '%env(OAUTH2_SERVER_PRIVATE_KEY_SET_SIGNATURE)%'
     oauth2_server_private_key_set_encryption: '%env(OAUTH2_SERVER_PRIVATE_KEY_SET_ENCRYPTION)%'
     oauth2_server_private_key_set_software_statement: '%env(OAUTH2_SERVER_PRIVATE_KEY_SET_SOFTWARE_STATEMENT)%'
     oauth2_server_public_key_set: '%env(OAUTH2_SERVER_PUBLIC_KEY_SET)%'
-    env(OAUTH2_SERVER_URL): "https://oidc.spomky-labs.com/"
+    env(DATABASE_DRIVER): pdo_mysql
+    env(DATABASE_HOST): 127.0.0.1
+    env(DATABASE_PORT): ~
+    env(DATABASE_NAME): symfony
+    env(DATABASE_USER): root
+    env(DATABASE_PASSWORD): ~
+    env(MAILER_TRANSPORT): smtp
+    env(MAILER_HOST): 127.0.0.1
+    env(MAILER_USER): ~
+    env(MAILER_PASSWORD): ~
+    env(SECRET): ThisTokenIsNotSoSecretChangeIt
+    env(COOKIE_NAME): PHPSESSID
+    env(OAUTH2_SERVER_URL): 'https://oidc.spomky-labs.com/'
     env(OAUTH2_SERVER_PRIVATE_KEY_SET_SIGNATURE): '{"keys":[{"kty":"EC","crv":"P-256","d":"336bCh7Zt-3FJmRLyFtINr6IsK5gh1CHJRdk20NcolA","x":"w0qQe7oa_aI3G6irjTbdtMqc4e0vNveQgRoRCyvpIBE","y":"7DyqhillL89iM6fMK216ov1EixmJGda76ugNuE-fsic"},{"kty":"RSA","n":"sLjaCStJYRr_y7_3GLlDb4bnGJ8XirSdFboYmvA38NXJ6PhIIjr-sFzfwlcpxZxz6zzjXkDFs3AcUOvC3_KRT5tn4XBOHcR6ABrT65dZTe_qalEpYeQG4oxevc01vmD_dD6Ho2O69amT4gscus2pvszFPdraMYybH24aQFztVtc","e":"AQAB","d":"By-tJhxNgpZfeoCW4rl95YYd1aF6iphnnt-PapWEINYAvOmDvWiavL86FiQHPdLr38_9CvMlVvOjIyNDLGonwHynPxAzUsT7M891N9D0cSCv9DlV3uqRVtdqF4MtWtpU5JWJ9q6auL1UPx2tJhOygu9tJ7w0bTGFwrUdb8PSnlE","p":"3p-6HWbX9YcSkeksJXW3_Y2cfZgRCUXH2or1dIidmscb4VVtTUwb-8gGzUDEq4iS_5pgLARl3O4lOHK0n6Qbrw","q":"yzdrGWwgaWqK6e9VFv3NXGeq1TEKHLkXjF7J24XWKm9lSmlssPRv0NwMPVp_CJ39BrLfFtpFr_fh0oG1sVZ5WQ","dp":"UQ6rP0VQ4G77zfCuSD1ibol_LyONIGkt6V6rHHEZoV9ZwWPPVlOd5MDh6R3p_eLOUw6scZpwVE7JcpIhPfcMtQ","dq":"Jg8g_cfkYhnUHm_2bbHm7jF0Ky1eCXcY0-9Eutpb--KVA9SuyI1fC6zKlgsG06RTKRgC9BK5DnXMU1J7ptTdMQ","qi":"17kC87NLUV6z-c-wtmbNqAkDbKmwpb2RMsGUQmhEPJwnWuwEKZpSQz776SUVwoc0xiQ8DpvU_FypflIlm6fq9w"},{"kty":"OKP","crv":"Ed25519","x":"F8bwnQKh0_xcQ3vcY0e02lJ5D94N3GjHvTij2-biqD8","d":"3Od9TNEBIuPWxTHSttnu3IKu9Vvve0xdnqCYh8fS2LE"}]}'
     env(OAUTH2_SERVER_PRIVATE_KEY_SET_ENCRYPTION): '{"keys":[{"kty":"EC","crv":"P-256","d":"336bCh7Zt-3FJmRLyFtINr6IsK5gh1CHJRdk20NcolA","x":"w0qQe7oa_aI3G6irjTbdtMqc4e0vNveQgRoRCyvpIBE","y":"7DyqhillL89iM6fMK216ov1EixmJGda76ugNuE-fsic"},{"kty":"RSA","n":"sLjaCStJYRr_y7_3GLlDb4bnGJ8XirSdFboYmvA38NXJ6PhIIjr-sFzfwlcpxZxz6zzjXkDFs3AcUOvC3_KRT5tn4XBOHcR6ABrT65dZTe_qalEpYeQG4oxevc01vmD_dD6Ho2O69amT4gscus2pvszFPdraMYybH24aQFztVtc","e":"AQAB","d":"By-tJhxNgpZfeoCW4rl95YYd1aF6iphnnt-PapWEINYAvOmDvWiavL86FiQHPdLr38_9CvMlVvOjIyNDLGonwHynPxAzUsT7M891N9D0cSCv9DlV3uqRVtdqF4MtWtpU5JWJ9q6auL1UPx2tJhOygu9tJ7w0bTGFwrUdb8PSnlE","p":"3p-6HWbX9YcSkeksJXW3_Y2cfZgRCUXH2or1dIidmscb4VVtTUwb-8gGzUDEq4iS_5pgLARl3O4lOHK0n6Qbrw","q":"yzdrGWwgaWqK6e9VFv3NXGeq1TEKHLkXjF7J24XWKm9lSmlssPRv0NwMPVp_CJ39BrLfFtpFr_fh0oG1sVZ5WQ","dp":"UQ6rP0VQ4G77zfCuSD1ibol_LyONIGkt6V6rHHEZoV9ZwWPPVlOd5MDh6R3p_eLOUw6scZpwVE7JcpIhPfcMtQ","dq":"Jg8g_cfkYhnUHm_2bbHm7jF0Ky1eCXcY0-9Eutpb--KVA9SuyI1fC6zKlgsG06RTKRgC9BK5DnXMU1J7ptTdMQ","qi":"17kC87NLUV6z-c-wtmbNqAkDbKmwpb2RMsGUQmhEPJwnWuwEKZpSQz776SUVwoc0xiQ8DpvU_FypflIlm6fq9w"},{"kty":"OKP","crv":"X25519","x":"muy3TWd3BLekLzoCjzi0oenBPtlE_95UuP63zhv9gEc","d":"mVjkQEF-zxBiv92XTZ6NxM-BxMQkX8OiR8jTk2H3kH8"}]}'
     env(OAUTH2_SERVER_PRIVATE_KEY_SET_SOFTWARE_STATEMENT): '{"keys":[{"kty":"RSA","n":"sLjaCStJYRr_y7_3GLlDb4bnGJ8XirSdFboYmvA38NXJ6PhIIjr-sFzfwlcpxZxz6zzjXkDFs3AcUOvC3_KRT5tn4XBOHcR6ABrT65dZTe_qalEpYeQG4oxevc01vmD_dD6Ho2O69amT4gscus2pvszFPdraMYybH24aQFztVtc","e":"AQAB","d":"By-tJhxNgpZfeoCW4rl95YYd1aF6iphnnt-PapWEINYAvOmDvWiavL86FiQHPdLr38_9CvMlVvOjIyNDLGonwHynPxAzUsT7M891N9D0cSCv9DlV3uqRVtdqF4MtWtpU5JWJ9q6auL1UPx2tJhOygu9tJ7w0bTGFwrUdb8PSnlE","p":"3p-6HWbX9YcSkeksJXW3_Y2cfZgRCUXH2or1dIidmscb4VVtTUwb-8gGzUDEq4iS_5pgLARl3O4lOHK0n6Qbrw","q":"yzdrGWwgaWqK6e9VFv3NXGeq1TEKHLkXjF7J24XWKm9lSmlssPRv0NwMPVp_CJ39BrLfFtpFr_fh0oG1sVZ5WQ","dp":"UQ6rP0VQ4G77zfCuSD1ibol_LyONIGkt6V6rHHEZoV9ZwWPPVlOd5MDh6R3p_eLOUw6scZpwVE7JcpIhPfcMtQ","dq":"Jg8g_cfkYhnUHm_2bbHm7jF0Ky1eCXcY0-9Eutpb--KVA9SuyI1fC6zKlgsG06RTKRgC9BK5DnXMU1J7ptTdMQ","qi":"17kC87NLUV6z-c-wtmbNqAkDbKmwpb2RMsGUQmhEPJwnWuwEKZpSQz776SUVwoc0xiQ8DpvU_FypflIlm6fq9w"}]}'
