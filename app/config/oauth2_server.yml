@@ -55,7 +55,7 @@ oauth2_server:
         client_assertion_jwt:
             enabled: true
             secret_lifetime: 0
-            signature_algorithms: ['RS256', 'RS384', 'RS512', 'HS256', 'HS384', 'HS512', 'ES256', 'HS384', 'ES512', 'EdDSA']
+            signature_algorithms: ['RS256', 'RS384', 'RS512', 'HS256', 'HS384', 'HS512', 'ES256', 'ES384', 'ES512', 'EdDSA']
             claim_checkers: ['exp', 'iat', 'nbf']
             header_checkers: ['crit']
             encryption:
@@ -139,7 +139,7 @@ oauth2_server:
                     template: '@OAuth2FrameworkServerBundle/form_post/response.html.twig'
             request_object:
                 enabled: true
-                signature_algorithms: ['RS256', 'RS384', 'RS512', 'HS256', 'HS384', 'HS512', 'ES256', 'HS384', 'ES512', 'EdDSA']
+                signature_algorithms: ['RS256', 'RS384', 'RS512', 'HS256', 'HS384', 'HS512', 'ES256', 'ES384', 'ES512', 'EdDSA']
                 encryption:
                     enabled: true
                     required: false
@@ -179,7 +179,7 @@ oauth2_server:
         jwt_bearer:
             enabled: true
             issue_refresh_token: true
-            signature_algorithms: ['RS256', 'RS384', 'RS512', 'HS256', 'HS384', 'HS512', 'ES256', 'HS384', 'ES512', 'EdDSA']
+            signature_algorithms: ['RS256', 'RS384', 'RS512', 'HS256', 'HS384', 'HS512', 'ES256', 'ES384', 'ES512', 'EdDSA']
             claim_checkers: ['exp', 'iat', 'nbf']
             header_checkers: ['crit']
             encryption:
@@ -198,7 +198,7 @@ oauth2_server:
                 enabled: true
             lifetime: 1800
             default_signature_algorithm: 'RS256'
-            signature_algorithms: ['RS256', 'RS384', 'RS512', 'HS256', 'HS384', 'HS512', 'ES256', 'HS384', 'ES512', 'EdDSA']
+            signature_algorithms: ['RS256', 'RS384', 'RS512', 'HS256', 'HS384', 'HS512', 'ES256', 'ES384', 'ES512', 'EdDSA']
             claim_checkers: ['exp', 'iat', 'nbf']
             header_checkers: ['crit']
             encryption:
@@ -212,7 +212,7 @@ oauth2_server:
             path: '/userinfo'
             signature:
                 enabled: true
-                signature_algorithms: ['RS256', 'RS384', 'RS512', 'HS256', 'HS384', 'HS512', 'ES256', 'HS384', 'ES512', 'EdDSA', 'none']
+                signature_algorithms: ['RS256', 'RS384', 'RS512', 'HS256', 'HS384', 'HS512', 'ES256', 'ES384', 'ES512', 'EdDSA', 'none']
             encryption:
                 enabled: true
                 key_encryption_algorithms: ['RSA1_5', 'RSA-OAEP', 'RSA-OAEP-256', 'A128KW', 'A192KW', 'A256KW', 'A128GCMKW', 'A192GCMKW', 'A256GCMKW', 'PBES2-HS256+A128KW', 'PBES2-HS384+A192KW', 'PBES2-HS512+A256KW', 'ECDH-ES', 'ECDH-ES+A128KW', 'ECDH-ES+A192KW', 'ECDH-ES+A256KW']
