@@ -16,6 +16,9 @@ if (PHP_VERSION_ID < 70000) {
 // When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
 //Request::enableHttpMethodParameterOverride();
 $request = Request::createFromGlobals();
+Request::setTrustedProxies([$request->server->get('REMOTE_ADDR')]);
+Request::setTrustedHeaderName(Request::HEADER_FORWARDED, null);
+Request::setTrustedHeaderName(Request::HEADER_X_FORWARDED_HOST, null);
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
