@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: fos.yml }
     - { resource: assetic.yml }
+    - { resource: http.yml }
     - { resource: oauth2_server.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed

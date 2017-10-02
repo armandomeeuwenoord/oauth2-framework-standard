@@ -15,31 +15,26 @@
     },
     "require": {
         "php": "^7.1",
+        "bmatzner/fontawesome-bundle": "^4.7",
+        "components/jquery": "^1.12",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
+        "friendsofsymfony/user-bundle": "^2.0",
         "incenteev/composer-parameter-handler": "^2.0",
+        "oauth2-framework/oauth2-framework": "^1.0@dev",
+        "php-http/guzzle6-adapter": "^1.1",
+        "php-http/httplug-bundle": "^1.7",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
+        "spomky-labs/jose": "^7.0@dev",
+        "symfony/assetic-bundle": "^2.8|^3.0",
         "symfony/monolog-bundle": "^3.1.0",
         "symfony/polyfill-apcu": "^1.0",
+        "symfony/psr-http-message-bridge": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.3.*",
         "twig/twig": "^1.0||^2.0",
-
-        "symfony/assetic-bundle": "^2.8|^3.0",
-
-        "oauth2-framework/oauth2-framework": "^1.0@dev",
-        "spomky-labs/jose": "^7.0@dev",
-
-        "friendsofsymfony/user-bundle": "^2.0",
-
-        "twitter/bootstrap": "^3.3",
-        "components/jquery": "^1.12",
-        "bmatzner/fontawesome-bundle": "^4.7",
-        "http-interop/http-factory-diactoros": "^0.3",
-        "php-http/curl-client": "^1.7",
-        "zendframework/zend-diactoros": "^1.4",
-        "symfony/psr-http-message-bridge": "^1.0"
+        "twitter/bootstrap": "^3.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
