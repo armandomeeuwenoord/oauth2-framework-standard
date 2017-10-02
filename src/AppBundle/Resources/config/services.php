@@ -15,6 +15,7 @@ use AppBundle\Entity\ResourceRepository;
 use AppBundle\Entity\UserManager;
 use AppBundle\Entity\UserRepository;
 use AppBundle\Service\EventStore;
+use AppBundle\Service\AccessTokenHandler;
 use AppBundle\Service\UserProvider;
 use AppBundle\Service\ResourceServerRepository;
 use OAuth2Framework\Component\Server\Endpoint\UserInfo\Pairwise\EncryptedSubjectIdentifier;
@@ -67,7 +68,7 @@ return [
     'eventstore.accesstoken' => create(EventStore::class)
         ->arguments(
             '%kernel.cache_dir%',
-            'initialaccesstoken'
+            'accesstoken'
         ),
 
     'MyAccessTokenRepository' => create(AccessTokenByReferenceRepository::class)
@@ -105,4 +106,10 @@ return [
             mb_substr('This is my salt or my IV !!!', 0, 16, '8bit'),
             mb_substr('This is my salt or my IV !!!', 0, 16, '8bit')
         ),
+
+    'AccessTokenHandler' => create(AccessTokenHandler::class)
+        ->arguments([
+            get('MyAccessTokenRepository'),
+        ])
+        ->tag('oauth2_server_access_token_handler'),
 ];

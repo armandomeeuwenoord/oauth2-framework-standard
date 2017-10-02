@@ -40,7 +40,7 @@ final class AccessTokenHandler implements AccessTokenHandlerInterface
      *
      * @return null|AccessToken
      */
-    public function find(string $token)
+    public function find(string $token): ?AccessToken
     {
         return $this->accessTokenRepository->find(AccessTokenId::create($token));
     }
