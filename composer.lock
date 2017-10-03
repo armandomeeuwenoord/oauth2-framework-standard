@@ -3661,12 +3661,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Spomky-Labs/jose.git",
-                "reference": "b3d8c93a567a81b7d1dd9bef30f9478745a3eae6"
+                "reference": "b348c3c086c9b5723f23f57eeb0e873c72ada324"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spomky-Labs/jose/zipball/b3d8c93a567a81b7d1dd9bef30f9478745a3eae6",
-                "reference": "b3d8c93a567a81b7d1dd9bef30f9478745a3eae6",
+                "url": "https://api.github.com/repos/Spomky-Labs/jose/zipball/b348c3c086c9b5723f23f57eeb0e873c72ada324",
+                "reference": "b348c3c086c9b5723f23f57eeb0e873c72ada324",
                 "shasum": ""
             },
             "require": {
@@ -3749,7 +3749,7 @@
                 "jwt",
                 "symfony"
             ],
-            "time": "2017-10-02T19:40:42+00:00"
+            "time": "2017-10-03T10:35:16+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
